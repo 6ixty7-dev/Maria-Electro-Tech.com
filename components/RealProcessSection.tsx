@@ -18,8 +18,8 @@ export default function RealProcessSection() {
     },
     {
       num: '03',
-      title: 'Guaranteed Handover',
-      desc: 'We execute the repair efficiently using premium materials. After complete site tidying, we deliver a digital receipt backed by our 30-day labor warranty.',
+      title: 'Professional Handover',
+      desc: 'We execute the repair efficiently using quality materials. The site is left clean and tidy, and you receive a clear digital service receipt for your records.',
       icon: 'verified'
     }
   ];

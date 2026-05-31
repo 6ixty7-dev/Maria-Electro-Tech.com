@@ -35,11 +35,11 @@ export default function UnauthorizedPage() {
         <div className="h-px bg-outline-variant/20 my-4" />
 
         <p className="text-secondary text-xs sm:text-sm leading-relaxed">
-          Your Google account authenticated successfully, but your email address is not whitelisted in the <strong>Maria Electro Tech</strong> administration register.
+          This phone number is not registered for <strong>Maria Electro Tech</strong> admin access.
         </p>
 
         <p className="text-secondary text-xs">
-          If you believe this is an error, please contact support or verify the whitelisted emails in the constants.
+          If you believe this is an error, contact the system owner or update the whitelist in <code className="text-primary text-[10px]">lib/constants.ts</code>.
         </p>
 
         <div className="pt-6">

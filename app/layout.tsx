@@ -4,7 +4,7 @@ import { AuthProvider } from '@/hooks/useAuth';
 
 export const metadata: Metadata = {
   title: "Maria Electro Tech | Premium Electrical & Plumbing Services in Kochi",
-  description: "Certified electrical, plumbing, inverter, CCTV, and maintenance services in Kochi / Ernakulam. Experienced technicians, 60-min response, transparent pricing & 30-day warranty. Book now on WhatsApp!",
+  description: "Trusted electrical, plumbing, inverter, CCTV, and home maintenance services in Kochi / Ernakulam, Kerala. Skilled technicians, transparent pricing, and dependable service since 2000. Book now on WhatsApp!",
   keywords: [
     "electrician in kochi", 
     "plumber in kochi", 

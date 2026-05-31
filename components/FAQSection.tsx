@@ -16,12 +16,12 @@ export default function FAQSection() {
       a: 'For major power failures, electrical short circuits, or critical plumbing leaks within Ernakulam, we prioritize urgent dispatches. Our mobile emergency support technicians typically reach Edappally, Kakkanad, Vyttila, Palarivattom, and Kadavanthra within 45 to 60 minutes.'
     },
     {
-      q: 'Are your electricians and plumbers licensed in Kerala?',
-      a: 'Yes, absolutely. Every single technician is a background-vetted, direct employee of Maria Electro Tech. Our electricians hold formal Kerala State Electricity Board (KSEB) certifications, ensuring compliance with strict domestic safety guidelines.'
+      q: 'Are your electricians and plumbers experienced and trained?',
+      a: 'Yes. Every technician is a background-vetted, direct employee of Maria Electro Tech. Our team is trained and experienced in domestic electrical and plumbing work in Kerala, and we follow safe, quality-focused practices on every job.'
     },
     {
-      q: 'Do you offer a warranty on service repairs?',
-      a: 'We provide a 30-day structural workmanship warranty on all labor. If the exact same issue arises within 30 days of our repair, we return and fix it completely free of charge. Any materials replaced are backed by their respective manufacturer warranties.'
+      q: 'Do you stand behind the quality of your work?',
+      a: 'Absolutely. We take accountability for our workmanship seriously. If an issue recurs due to our repair, contact us and we will assess and address it promptly. Materials replaced are backed by the respective manufacturer warranties.'
     },
     {
       q: 'How do you charge for parts and materials?',
@@ -72,7 +72,7 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-secondary text-sm">
-            Everything you need to know about our local Kochi dispatches, warranties, and licensed vetting.
+            Everything you need to know about our local Kochi service process, technicians, and pricing.
           </p>
         </div>
 

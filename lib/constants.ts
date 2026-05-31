@@ -1,9 +1,13 @@
-// Allowed Admin email accounts for Dashboard entrance
-export const ALLOWED_USERS = [
-  'mariaelectrotech.kochi@gmail.com',
-  'admin@mariaelectrotech.com',
-  'your.email@gmail.com', // Placeholder for user customization
+// Allowed Admin phone numbers for PIN-based Dashboard entrance
+export const ALLOWED_ADMIN_PHONES = [
+  '+919847192829', // Primary admin: Maria Electro Tech
 ];
+
+// 4-digit admin PIN — change this to update access credentials
+export const ADMIN_PIN = '9648';
+
+// Legacy email whitelist (kept for reference, PIN auth is primary now)
+export const ALLOWED_USERS: string[] = [];
 
 // Kochi Localities / Neighborhoods
 export const KOCHI_LOCALITIES = [
@@ -141,14 +145,14 @@ export const MASTER_SERVICES: Record<string, ServiceProfile> = {
     name: 'Annual Maintenance Contracts (AMC)',
     category: 'Maintenance',
     title: 'Comprehensive Home Maintenance Plans in Kochi',
-    description: 'Complete home maintenance protection plans with routine checkups, emergency dispatches, and licensed accountability.',
+    description: 'Complete home maintenance protection plans with routine checkups, priority emergency dispatches, and structured service accountability.',
     startsAt: 4999,
     icon: 'home_repair_service',
     features: [
-      'Four structural preventive maintenance visits per year',
-      'Priority emergency callouts within 45 minutes across Ernakulam',
+      'Four scheduled preventive maintenance visits per year',
+      'Priority emergency dispatch across Ernakulam district',
       'Covers routine electrical inspections, switch checks, and faucet servicing',
-      'Discounted material acquisition & verified accountability logbooks'
+      'Discounted materials & structured service accountability records'
     ]
   }
 };
@@ -158,14 +162,14 @@ export const CONTACT_INFO = {
   phone: '+91 98471 92829',
   whatsapp: 'https://wa.me/919847192829?text=Hello%20Maria%20Electro%20Tech,%20I%20would%20like%20to%20book%20a%20service.',
   email: 'support@mariaelectrotech.com',
-  address: 'Metro Pillar 500, Edappally, Kochi, Kerala - 682024',
-  mapCoordinates: { lat: 10.0261, lng: 76.3079 }
+  address: 'S.A. Road, Valanjambalam, Kochi, Kerala 682016',
+  mapCoordinates: { lat: 9.9816, lng: 76.2999 }
 };
 
-// Trust Badges & Local Warranties
+// Trust Badges & Local Commitments
 export const TRUST_BADGES = [
-  { icon: 'bolt', title: '60 Mins Response', desc: 'Rapid emergency response across Ernakulam' },
-  { icon: 'verified_user', title: 'Licensed Vetted Pros', desc: 'Rigorous background check and state certifications' },
+  { icon: 'bolt', title: 'Fast Response Support', desc: 'Priority emergency dispatch across Ernakulam district' },
+  { icon: 'verified_user', title: 'Skilled & Verified Pros', desc: 'Experienced, background-checked technicians on every job' },
   { icon: 'payments', title: 'Transparent Pricing', desc: 'No hidden visit charges or surprise invoicing' },
-  { icon: 'history', title: '30-Day Labor Warranty', desc: 'Accountable workmanship on every single job' }
+  { icon: 'engineering', title: 'Professional Standards', desc: 'Quality workmanship with accountability on every project' }
 ];

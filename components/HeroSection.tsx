@@ -27,7 +27,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-secondary text-sm md:text-base max-w-lg leading-relaxed">
-              Premium engineering for modern Ernakulam homes. We bring clean, licensed, and highly accountable technicians to Kochi’s most sophisticated residences.
+              Reliable electrical, plumbing, and home maintenance for Kochi &amp; Ernakulam. Skilled technicians, honest pricing, and dependable service — since 2000.
             </p>
 
             {/* Quick Action CTAs */}
@@ -69,8 +69,8 @@ export default function HeroSection() {
                   verified_user
                 </span>
                 <div>
-                  <p className="text-[10px] text-secondary font-bold leading-none">100% Accountable</p>
-                  <p className="font-extrabold text-xs text-on-background mt-0.5">Licensed Engineers</p>
+                  <p className="text-[10px] text-secondary font-bold leading-none">Est. Jan 2000</p>
+                  <p className="font-extrabold text-xs text-on-background mt-0.5">Skilled &amp; Experienced</p>
                 </div>
               </div>
             </div>
@@ -91,9 +91,9 @@ export default function HeroSection() {
               {/* Floating trust badge inside image */}
               <div className="absolute right-6 bottom-6 glass-card p-3 rounded-xl z-20 shadow-lg border-[0.5px] border-white/30 flex items-center gap-2 select-none animate-bounce" style={{ animationDuration: '4s' }}>
                 <span className="material-symbols-outlined text-primary font-bold text-xl">
-                  shield
+                  engineering
                 </span>
-                <span className="text-[10px] font-extrabold text-on-background uppercase tracking-wider">30-Day Guarantee</span>
+                <span className="text-[10px] font-extrabold text-on-background uppercase tracking-wider">25+ Yrs Experience</span>
               </div>
             </div>
           </div>

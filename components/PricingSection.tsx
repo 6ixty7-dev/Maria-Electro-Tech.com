@@ -23,7 +23,7 @@ export default function PricingSection() {
       price: '299',
       period: 'visit',
       popular: true,
-      features: ['30-day labor warranty included', 'Complete pipe-pressure diagnostics', 'Acquisition support for parts', 'Accredited technician check']
+      features: ['Professional workmanship standards', 'Complete pipe-pressure diagnostics', 'Acquisition support for parts', 'Skilled technician on every job']
     },
     {
       icon: 'videocam',
@@ -67,7 +67,7 @@ export default function PricingSection() {
             price: Number(item.price).toLocaleString('en-IN'),
             period: item.period || 'visit',
             popular: item.is_popular,
-            features: item.features.length > 0 ? item.features : ['Fully background-vetted specialists', '30-day labor warranty included']
+            features: item.features.length > 0 ? item.features : ['Fully background-vetted specialists', 'Professional workmanship standards']
           }));
           setTiers(mapped);
         }

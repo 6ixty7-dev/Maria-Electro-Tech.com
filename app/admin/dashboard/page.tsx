@@ -191,7 +191,7 @@ export default function AdminDashboard() {
 
       setPricing(localP ? JSON.parse(localP) : [
         { id: 'p1', name: 'Basic Electrical Callout', price: '299', period: 'visit', category: 'Electrical', features: ['Short-circuit checkup', 'Luxury light fittings', 'Accountable billing invoice'], is_popular: true },
-        { id: 'p2', name: 'Standard Plumbing Diagnostic', price: '199', period: 'visit', category: 'Plumbing', features: ['Acoustic pipe leak check', 'Sanitaryware replacements', '30-day labor warranty'], is_popular: false }
+        { id: 'p2', name: 'Standard Plumbing Diagnostic', price: '199', period: 'visit', category: 'Plumbing', features: ['Acoustic pipe leak check', 'Sanitaryware replacements', 'Professional workmanship'], is_popular: false }
       ]);
 
       setGallery(localG ? JSON.parse(localG) : [
@@ -642,7 +642,7 @@ create policy "Admin access" on public.gallery for all using (true);
 
         <div className="flex items-center gap-4">
           <div className="hidden md:block text-right">
-            <p className="text-xs font-bold text-on-background leading-none">{user?.email || 'Admin'}</p>
+            <p className="text-xs font-bold text-on-background leading-none">{user || 'Admin'}</p>
             <p className="text-[9px] text-tertiary font-bold mt-1">Authorized Operations Manager</p>
           </div>
           <button

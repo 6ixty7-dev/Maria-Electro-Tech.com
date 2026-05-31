@@ -16,7 +16,7 @@ export default function WhyKochiTrustsSection() {
             Why Kochi Trusts <span className="text-primary">Maria Electro Tech</span>
           </h2>
           <p className="text-secondary text-sm md:text-base">
-            We bridge clean Apple-level digital precision with the warm, dependable local service you expect. Here is what makes us Ernakulam’s most reliable partner.
+            Our technicians are direct employees of Maria Electro Tech — verified, uniformed, and trained for quality work in Kochi homes since 2000.
           </p>
         </div>
 
@@ -44,10 +44,10 @@ export default function WhyKochiTrustsSection() {
         <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-12">
           <div className="space-y-6">
             <h3 className="text-2xl font-bold tracking-tight text-on-background">
-              Vetted. Uniformed. Licensed.
+              Skilled. Reliable. Accountable.
             </h3>
             <p className="text-secondary text-sm leading-relaxed">
-              Every single technician entering your home is a direct, verified employee of Maria Electro Tech. We do not dispatch unverified third-party contractors. 
+              Every technician who enters your home is a direct, verified employee of Maria Electro Tech. We do not dispatch unverified third-party contractors.
             </p>
             <ul className="space-y-3.5">
               <li className="flex items-start gap-3">
@@ -55,7 +55,7 @@ export default function WhyKochiTrustsSection() {
                   check_circle
                 </span>
                 <span className="text-xs md:text-sm font-semibold text-on-surface-variant">
-                  <strong>Kerala State Electrical Licensing</strong>: Fully accredited technicians with strict safety enforcement.
+                  <strong>Skilled &amp; Trained Technicians</strong>: Experienced professionals with strong knowledge of local electrical and plumbing standards.
                 </span>
               </li>
               <li className="flex items-start gap-3">
