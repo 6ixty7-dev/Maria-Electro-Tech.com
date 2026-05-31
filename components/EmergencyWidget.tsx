@@ -5,7 +5,7 @@ import { CONTACT_INFO } from '@/lib/constants';
 export default function EmergencyWidget() {
   return (
     <div className="w-full max-w-7xl mx-auto px-6 md:px-12 my-8">
-      <div className="relative rounded-3xl bg-primary text-white p-8 md:p-12 overflow-hidden shadow-xl shadow-primary/10 border-[0.5px] border-white/10">
+      <div className="relative rounded-3xl bg-gradient-to-br from-primary to-primary-container text-white p-8 md:p-12 overflow-hidden shadow-xl shadow-primary/10 border border-white/20">
         {/* Subtle dot background pattern */}
         <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
           <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">

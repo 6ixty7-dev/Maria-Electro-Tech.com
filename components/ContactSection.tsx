@@ -27,8 +27,14 @@ export default function ContactSection() {
     }, 1000);
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   return (
-    <section id="contact" className="py-20 bg-surface-container-low border-t border-outline-variant/20">
+    <section id="contact" className="py-20 bg-transparent border-t border-outline-variant/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
@@ -50,7 +56,8 @@ export default function ContactSection() {
             <div className="space-y-4">
               <a
                 href={`tel:${CONTACT_INFO.phone.replace(/\s+/g, '')}`}
-                className="flex items-center gap-4 p-4 bg-white hover:bg-surface-container-low rounded-2xl border border-outline-variant/20 shadow-sm transition-all spring-hover block group"
+                onMouseMove={handleMouseMove}
+                className="glass-panel spring-hover bg-white/40 border border-white/50 flex items-center gap-4 p-4 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] transition-all block group"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                   <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -69,7 +76,8 @@ export default function ContactSection() {
                 href={CONTACT_INFO.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-white hover:bg-surface-container-low rounded-2xl border border-outline-variant/20 shadow-sm transition-all spring-hover block group"
+                onMouseMove={handleMouseMove}
+                className="glass-panel spring-hover bg-white/40 border border-white/50 flex items-center gap-4 p-4 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] transition-all block group"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center">
                   {/* WhatsApp SVG */}
@@ -87,14 +95,14 @@ export default function ContactSection() {
             </div>
 
             {/* Premium Coverage Map Overlay */}
-            <div className="relative rounded-3xl overflow-hidden aspect-[16/9] border border-outline-variant/20 shadow-sm float-anim">
+            <div className="relative rounded-3xl overflow-hidden aspect-[16/9] border border-white/50 shadow-md">
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoW_l-8elht7OllsE0CW8Qw7q3eR8dhDM-Py5P54BY66pVdoTIQuPYuv5TEki24XHYuYdmYfhHMt9aLM7lr4XcRpXvzSfT67l1aRHtThg-CNwz89uRw6g1h-Uem0pLjks_B3kcqAyJVfRFu8fdOwLfS9kXke5gHdH-p1XsgRVr-KknhnnPssBl8gRWTt8LTXlEiRhs9VR9-b5poyEOOSCCL2a-eQO6lrML8BZYNkvCSXRZIBR5HcNfBfUfusdfqU3eGEkPRKzt5_8"
                 alt="Kochi Ernakulam Service Territory Map"
                 className="w-full h-full object-cover grayscale opacity-60"
               />
               <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
-                <div className="glass-card px-5 py-2.5 rounded-full flex items-center gap-2 shadow-md">
+                <div className="glass-panel px-5 py-2.5 rounded-full flex items-center gap-2 shadow-md bg-white/60 border border-white/60">
                   <span className="material-symbols-outlined text-primary font-bold text-lg select-none animate-pulse">
                     location_on
                   </span>
@@ -105,7 +113,7 @@ export default function ContactSection() {
           </div>
 
           {/* Clean Offline Form */}
-          <div className="bg-white p-8 rounded-3xl border border-outline-variant/20 shadow-md">
+          <div className="glass-panel bg-white/50 border border-white/60 p-8 rounded-3xl shadow-xl">
             <h3 className="text-xl font-bold text-on-background mb-1">Schedule a Visit</h3>
             <p className="text-secondary text-xs mb-6">
               Complete this brief form. Submitting will instantly prepare your WhatsApp booking ticket.
@@ -120,7 +128,7 @@ export default function ContactSection() {
                   placeholder="e.g. Kurian Joseph"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-sm focus:outline-none focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-white/60 bg-white/40 text-sm focus:outline-none focus:border-primary transition-colors focus:bg-white/80"
                 />
               </div>
 
@@ -132,7 +140,7 @@ export default function ContactSection() {
                   placeholder="e.g. +91 98765 43210"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-sm focus:outline-none focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-white/60 bg-white/40 text-sm focus:outline-none focus:border-primary transition-colors focus:bg-white/80"
                 />
               </div>
 
@@ -142,7 +150,7 @@ export default function ContactSection() {
                   <select
                     value={formData.locality}
                     onChange={(e) => setFormData({ ...formData, locality: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-xs focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-white/60 bg-white/40 text-xs focus:outline-none focus:border-primary transition-colors focus:bg-white/80"
                   >
                     <option value="kakkanad">Kakkanad</option>
                     <option value="edappally">Edappally</option>
@@ -159,7 +167,7 @@ export default function ContactSection() {
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-xs focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-white/60 bg-white/40 text-xs focus:outline-none focus:border-primary transition-colors focus:bg-white/80"
                   >
                     <option value="electrician">Electrical Repair</option>
                     <option value="plumber">Plumbing Repair</option>
@@ -177,7 +185,7 @@ export default function ContactSection() {
                   placeholder="Tell us briefly about the problem..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-sm focus:outline-none focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 rounded-xl border border-white/60 bg-white/40 text-sm focus:outline-none focus:border-primary transition-colors focus:bg-white/80"
                 />
               </div>
 
@@ -190,7 +198,6 @@ export default function ContactSection() {
               </button>
             </form>
           </div>
-
         </div>
       </div>
     </section>

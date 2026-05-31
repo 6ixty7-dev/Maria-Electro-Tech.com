@@ -14,8 +14,14 @@ export default function HeroSection() {
     });
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   return (
-    <section className="relative pt-32 pb-16 md:py-24 bg-surface overflow-hidden min-h-[90vh] flex items-center">
+    <section className="relative pt-32 pb-16 md:py-24 bg-transparent overflow-hidden min-h-[90vh] flex items-center">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
@@ -64,7 +70,10 @@ export default function HeroSection() {
 
             {/* trust badges */}
             <div className="flex flex-wrap gap-4 pt-4 border-t border-outline-variant/10">
-              <div className="glass-card p-3 rounded-xl flex items-center gap-2.5 shadow-sm">
+              <div 
+                onMouseMove={handleMouseMove}
+                className="glass-panel p-3 rounded-xl flex items-center gap-2.5 shadow-sm spring-hover bg-white/40 border border-white/50"
+              >
                 <span className="material-symbols-outlined text-yellow-500 text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
@@ -74,7 +83,10 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="glass-card p-3 rounded-xl flex items-center gap-2.5 shadow-sm">
+              <div 
+                onMouseMove={handleMouseMove}
+                className="glass-panel p-3 rounded-xl flex items-center gap-2.5 shadow-sm spring-hover bg-white/40 border border-white/50"
+              >
                 <span className="material-symbols-outlined text-primary text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>
                   verified_user
                 </span>
@@ -87,11 +99,11 @@ export default function HeroSection() {
           </div>
 
           {/* Hero Right Visual Column */}
-          <div className="relative group max-w-md lg:max-w-none mx-auto w-full">
+          <div className="relative group max-w-md lg:max-w-none mx-auto w-full animate-breathing">
             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/10 to-transparent blur-3xl opacity-50 pointer-events-none" />
             
             {/* Realistic Technician Photo */}
-            <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-lg border-[0.5px] border-white/20 z-10 bg-white">
+            <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-lg border border-white/50 z-10 bg-white">
               <img
                 src={heroImage}
                 alt="Professional Kochi Electrician"
@@ -100,7 +112,10 @@ export default function HeroSection() {
               />
 
               {/* Floating trust badge inside image */}
-              <div className="absolute right-6 bottom-6 glass-card p-3 rounded-xl z-20 shadow-lg border-[0.5px] border-white/30 flex items-center gap-2 select-none">
+              <div 
+                onMouseMove={handleMouseMove}
+                className="absolute right-6 bottom-6 glass-panel p-3 rounded-xl z-20 shadow-lg border border-white/60 flex items-center gap-2 select-none bg-white/60"
+              >
                 <span className="material-symbols-outlined text-primary font-bold text-xl">
                   engineering
                 </span>
@@ -108,7 +123,6 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

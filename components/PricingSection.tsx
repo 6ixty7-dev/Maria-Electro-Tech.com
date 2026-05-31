@@ -102,8 +102,14 @@ export default function PricingSection() {
     loadPricing();
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   return (
-    <section id="pricing" className="py-20 bg-surface">
+    <section id="pricing" className="py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
@@ -130,10 +136,11 @@ export default function PricingSection() {
               className="h-full"
             >
               <div
-                className={`bg-white rounded-3xl p-6 md:p-8 border flex flex-col justify-between h-full transition-all duration-300 spring-hover relative ${
+                onMouseMove={handleMouseMove}
+                className={`glass-panel spring-hover rounded-3xl p-6 md:p-8 border flex flex-col justify-between h-full transition-all duration-300 relative ${
                   tier.popular
-                    ? 'border-primary shadow-lg scale-100 lg:scale-[1.03] z-10'
-                    : 'border-outline-variant/30 shadow-sm hover:shadow-md'
+                    ? 'border-primary bg-white/80 shadow-xl scale-100 lg:scale-[1.03] z-10'
+                    : 'border-white/50 bg-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.03)]'
                 }`}
               >
                 {tier.popular && (

@@ -14,8 +14,14 @@ export default function WhyKochiTrustsSection() {
     });
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   return (
-    <section id="why-us" className="py-20 bg-surface">
+    <section id="why-us" className="py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50}>
@@ -41,7 +47,10 @@ export default function WhyKochiTrustsSection() {
               delay={idx * 80}
               className="h-full"
             >
-              <div className="bg-white p-6 rounded-2xl border border-outline-variant/30 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300 spring-hover h-full flex flex-col justify-between">
+              <div 
+                onMouseMove={handleMouseMove}
+                className="glass-panel spring-hover bg-white/40 border border-white/50 p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] h-full flex flex-col justify-between"
+              >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
                     <span className="material-symbols-outlined text-2xl">{badge.icon}</span>
@@ -56,7 +65,7 @@ export default function WhyKochiTrustsSection() {
 
         {/* Technician Licensing and Safety Spotlight */}
         <ScrollReveal direction="up" delay={200}>
-          <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/20 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-12">
+          <div className="glass-panel bg-white/30 border border-white/45 p-8 rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-12">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold tracking-tight text-on-background">
                 Skilled. Reliable. Accountable.
@@ -92,7 +101,7 @@ export default function WhyKochiTrustsSection() {
               </ul>
             </div>
             {/* visual wrapper */}
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-white/40 shadow-sm">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-white/50 shadow-md">
               <img
                 src={teamImage}
                 alt="Certified Kochi Technicians Team"

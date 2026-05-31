@@ -62,7 +62,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-surface">
+    <section id="faq" className="py-20 bg-transparent">
       <div className="max-w-3xl mx-auto px-6 space-y-12">
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
@@ -87,7 +87,7 @@ export default function FAQSection() {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl border border-outline-variant/20 shadow-sm overflow-hidden transition-all duration-300"
+                  className="glass-panel bg-white/40 border border-white/50 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] overflow-hidden transition-all duration-300"
                 >
                   <button
                     onClick={() => toggle(idx)}

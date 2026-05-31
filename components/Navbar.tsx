@@ -47,6 +47,12 @@ export default function Navbar() {
     };
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   const navLinks = [
     { href: '#services', label: 'Services', id: 'services' },
     { href: '#why-us', label: 'Why Kochi Trusts Us', id: 'why-us' },
@@ -58,10 +64,11 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl border-[0.5px] border-white/40 backdrop-blur-xl transition-all duration-500 ${
+      onMouseMove={handleMouseMove}
+      className={`fixed left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl border border-white/55 glass-navbar transition-all duration-500 ${
         isScrolled
-          ? 'top-2 bg-white/95 shadow-md py-3 px-6 rounded-2xl md:rounded-full'
-          : 'top-4 bg-white/70 shadow-sm py-4 px-8 rounded-full'
+          ? 'top-2 bg-white/80 shadow-xl py-3 px-6 rounded-2xl md:rounded-full'
+          : 'top-4 bg-white/50 shadow-md py-4 px-8 rounded-full'
       }`}
     >
       <div className="flex justify-between items-center w-full">

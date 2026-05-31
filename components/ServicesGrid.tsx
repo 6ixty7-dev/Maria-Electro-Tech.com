@@ -14,6 +14,12 @@ export default function ServicesGrid() {
     getAllSiteMedia().then(setSiteMedia);
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   const getServiceImage = (key: string) => {
     const mediaMap: Record<string, string> = {
       'electrician': 'service_electrical',
@@ -39,7 +45,7 @@ export default function ServicesGrid() {
   };
 
   return (
-    <section id="services" className="py-20 bg-surface-container-low">
+    <section id="services" className="py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
         
         {/* Header */}
@@ -75,9 +81,12 @@ export default function ServicesGrid() {
               delay={idx * 80}
               className="h-full"
             >
-              <div className="bg-white rounded-3xl overflow-hidden border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-primary/15 transition-all duration-300 group flex flex-col h-full">
+              <div 
+                onMouseMove={handleMouseMove}
+                className="glass-panel spring-hover bg-white/40 border border-white/50 rounded-3xl overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] group flex flex-col h-full"
+              >
                 {/* Service Cover Image */}
-                <div className="h-48 overflow-hidden relative border-b border-outline-variant/20">
+                <div className="h-48 overflow-hidden relative border-b border-white/20">
                   <img
                     src={getServiceImage(service.key)}
                     alt={getServiceAlt(service.key) || service.name}

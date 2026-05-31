@@ -58,6 +58,12 @@ export default function VoiceOfKochi() {
     loadReviews();
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
   function getInitials(name: string) {
     if (!name) return 'ME';
     const parts = name.trim().split(/\s+/);
@@ -94,7 +100,10 @@ export default function VoiceOfKochi() {
   }
 
   const ReviewCard = ({ rev }: { rev: Review }) => (
-    <div className="w-[280px] sm:w-[350px] bg-white p-6 rounded-3xl border border-outline-variant/20 shadow-sm flex flex-col justify-between shrink-0 select-none hover:shadow-md hover:border-primary/15 transition-all duration-300 relative group whitespace-normal">
+    <div 
+      onMouseMove={handleMouseMove}
+      className="glass-panel w-[280px] sm:w-[350px] bg-white/40 border border-white/50 p-6 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-all duration-300 relative group whitespace-normal"
+    >
       {/* Quote decoration */}
       <div className="absolute top-6 right-8 text-surface-container-high opacity-10 select-none group-hover:scale-110 transition-transform duration-300 pointer-events-none">
         <span className="material-symbols-outlined text-[48px] sm:text-[56px]" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -162,7 +171,7 @@ export default function VoiceOfKochi() {
   );
 
   return (
-    <section id="blog" className="py-20 bg-surface-container-low overflow-hidden">
+    <section id="blog" className="py-20 bg-transparent overflow-hidden">
       {/* Dynamic CSS styles for hardware accelerated infinite marquee */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes marqueeScroll {
