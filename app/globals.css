@@ -1,26 +1,153 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #0059b5;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0071e3;
+  --color-on-primary-container: #fcfbff;
+  --color-secondary: #5d5e60;
+  --color-tertiary: #006a36;
+  --color-tertiary-container: #008645;
+  --color-on-tertiary-container: #f4fff2;
+  --color-background: #fcf8fb;
+  --color-on-background: #1b1b1d;
+  --color-surface: #fcf8fb;
+  --color-on-surface: #1b1b1d;
+  --color-surface-container-low: #f6f3f5;
+  --color-surface-container: #f0edef;
+  --color-surface-container-high: #eae7ea;
+  --color-surface-container-highest: #e4e2e4;
+  --color-surface-variant: #e4e2e4;
+  --color-on-surface-variant: #414753;
+  --color-outline: #717785;
+  --color-outline-variant: #c1c6d6;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  
+  --spacing-base: 8px;
+  --spacing-section-padding: 80px;
+  --spacing-stack-lg: 48px;
+  --spacing-container-margin: 24px;
+  --spacing-gutter: 16px;
+  --spacing-stack-sm: 12px;
+  --spacing-stack-md: 24px;
+  
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Inter', sans-serif;
+}
+
+/* ─── CSS Variables & Custom Animations ─── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --premium-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+  --spring-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Selective Glassmorphism Classes ─── */
+
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
+}
+
+.liquid-shadow {
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+.spring-hover {
+  transition: transform 0.4s var(--spring-bezier), background-color 0.3s var(--premium-bezier);
+}
+.spring-hover:hover {
+  transform: scale(1.03);
+}
+
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  animation: shimmer 12s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.float-anim {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ─── Scroll Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--premium-bezier), transform 0.8s var(--premium-bezier);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Custom Utilities ─── */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* ─── Mobile Styling Safe-area ─── */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
 }

@@ -1,0 +1,125 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createClient } from '@/lib/supabase';
+
+interface FAQItem {
+  q: string;
+  a: string;
+}
+
+export default function FAQSection() {
+  const staticFaqs: FAQItem[] = [
+    {
+      q: 'What is your emergency response time in Kochi?',
+      a: 'For major power failures, electrical short circuits, or critical plumbing leaks within Ernakulam, we prioritize urgent dispatches. Our mobile emergency support technicians typically reach Edappally, Kakkanad, Vyttila, Palarivattom, and Kadavanthra within 45 to 60 minutes.'
+    },
+    {
+      q: 'Are your electricians and plumbers licensed in Kerala?',
+      a: 'Yes, absolutely. Every single technician is a background-vetted, direct employee of Maria Electro Tech. Our electricians hold formal Kerala State Electricity Board (KSEB) certifications, ensuring compliance with strict domestic safety guidelines.'
+    },
+    {
+      q: 'Do you offer a warranty on service repairs?',
+      a: 'We provide a 30-day structural workmanship warranty on all labor. If the exact same issue arises within 30 days of our repair, we return and fix it completely free of charge. Any materials replaced are backed by their respective manufacturer warranties.'
+    },
+    {
+      q: 'How do you charge for parts and materials?',
+      a: 'We practice complete billing transparency. Our base charges are fixed and flat. If parts are required, we explain the diagnostic issue first, provide an upfront estimate, and source high-quality ISI-marked materials. You are also welcome to procure the parts yourself.'
+    }
+  ];
+
+  const [faqs, setFaqs] = useState<FAQItem[]>(staticFaqs);
+
+  useEffect(() => {
+    async function loadFaqs() {
+      try {
+        const supabase = createClient();
+        const { data, error } = await supabase
+          .from('faqs')
+          .select('*')
+          .order('created_at', { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          const mapped = data.map(item => ({
+            q: item.question,
+            a: item.answer
+          }));
+          setFaqs(mapped);
+        }
+      } catch (err) {
+        console.warn('Failed to load live FAQs, using offline fallback:', err);
+      }
+    }
+    loadFaqs();
+  }, []);
+
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+
+  const toggle = (idx: number) => {
+    setOpenIdx(openIdx === idx ? null : idx);
+  };
+
+  return (
+    <section id="faq" className="py-20 bg-surface">
+      <div className="max-w-3xl mx-auto px-6 space-y-12">
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit mx-auto">
+            Clear Answers
+          </p>
+          <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-secondary text-sm">
+            Everything you need to know about our local Kochi dispatches, warranties, and licensed vetting.
+          </p>
+        </div>
+
+        {/* Accordion List */}
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIdx === idx;
+            return (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl border border-outline-variant/20 shadow-sm overflow-hidden transition-all duration-300"
+              >
+                <button
+                  onClick={() => toggle(idx)}
+                  className="w-full p-6 text-left flex justify-between items-center group focus:outline-none select-none"
+                >
+                  <span className="font-bold text-sm sm:text-base text-on-background group-hover:text-primary transition-colors">
+                    {faq.q}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="material-symbols-outlined text-primary text-xl shrink-0 ml-4"
+                  >
+                    expand_more
+                  </motion.span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="px-6 pb-6 pt-2 text-secondary text-xs sm:text-sm leading-relaxed border-t border-outline-variant/5">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
