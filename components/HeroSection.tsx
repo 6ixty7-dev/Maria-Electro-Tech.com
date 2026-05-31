@@ -1,9 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '@/lib/constants';
+import { getSiteMediaUrl } from '@/lib/siteMedia';
 
 export default function HeroSection() {
+  const [heroImage, setHeroImage] = useState('https://lh3.googleusercontent.com/aida-public/AB6AXuDQnFes_q_GvRFDEjxYSnDZzGmnKUZyzjN9VdE0YIYTz-dIFp4qAeZBuHmy-EbX4tVdvQI_T3ID87p_a1B8bCZTtJLiRzhJHccJenmaOp5DyycRSB-ieMWKt0fQQhK8R7lXLxOj1HUAzUouVvVyJVSlfTswHWBLBot2GjCYDtzhcZ-MXSxZNX2XgKODZhG0hn9j8I1YCtkrHe_Xh9sv0DX1v58xsG0gmwJPU0jdKBF7svMXrr_yjwHgCI7hBMHigOr55Ywx1DzUxdQ');
+
+  useEffect(() => {
+    getSiteMediaUrl('hero_main').then((url) => {
+      if (url) setHeroImage(url);
+    });
+  }, []);
+
   return (
     <section className="relative pt-32 pb-16 md:py-24 bg-surface overflow-hidden min-h-[90vh] flex items-center">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
@@ -54,7 +64,7 @@ export default function HeroSection() {
 
             {/* trust badges */}
             <div className="flex flex-wrap gap-4 pt-4 border-t border-outline-variant/10">
-              <div className="glass-card p-3 rounded-xl flex items-center gap-2.5 shadow-sm float-anim">
+              <div className="glass-card p-3 rounded-xl flex items-center gap-2.5 shadow-sm">
                 <span className="material-symbols-outlined text-yellow-500 text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
@@ -64,7 +74,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="glass-card p-3 rounded-xl flex items-center gap-2.5 shadow-sm float-anim" style={{ animationDelay: '-3s' }}>
+              <div className="glass-card p-3 rounded-xl flex items-center gap-2.5 shadow-sm">
                 <span className="material-symbols-outlined text-primary text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>
                   verified_user
                 </span>
@@ -83,17 +93,18 @@ export default function HeroSection() {
             {/* Realistic Technician Photo */}
             <div className="relative rounded-[2.5rem] overflow-hidden aspect-[4/5] shadow-lg border-[0.5px] border-white/20 z-10 bg-white">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyxyWYR1gDjDxusLIyGh3W6JmAEtQhJHUZg5x7I2FVn-IKuxMpdnznHKDY21ZrT4nUlbVg82l7WdvlTjwFxD4lSz4PPA0SS-a0FbIxQHtiqIwxfIrhaRU4WhoDMhk41D2RdbSKh7uhdk8LMKzjMYpJ7sTJ1E7g_QJZB4iWkiGLHfU-ymeYEvXRtjUBScHzMMEd0y9K3s30OTZFG7HRPyYCPvIb3yk1c4b4SudavGc323b-YxKhiuLWU5HtbhpfmRYggr6X_IROrrQ"
+                src={heroImage}
                 alt="Professional Kochi Electrician"
+                loading="eager"
                 className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
               />
 
               {/* Floating trust badge inside image */}
-              <div className="absolute right-6 bottom-6 glass-card p-3 rounded-xl z-20 shadow-lg border-[0.5px] border-white/30 flex items-center gap-2 select-none animate-bounce" style={{ animationDuration: '4s' }}>
+              <div className="absolute right-6 bottom-6 glass-card p-3 rounded-xl z-20 shadow-lg border-[0.5px] border-white/30 flex items-center gap-2 select-none">
                 <span className="material-symbols-outlined text-primary font-bold text-xl">
                   engineering
                 </span>
-                <span className="text-[10px] font-extrabold text-on-background uppercase tracking-wider">25+ Yrs Experience</span>
+                <span className="text-[10px] font-extrabold text-on-background uppercase tracking-wider">Est. 2000 · Kochi</span>
               </div>
             </div>
           </div>

@@ -81,8 +81,10 @@ body {
 .spring-hover {
   transition: transform 0.4s var(--spring-bezier), background-color 0.3s var(--premium-bezier);
 }
-.spring-hover:hover {
-  transform: scale(1.03);
+@media (min-width: 640px) {
+  .spring-hover:hover {
+    transform: scale(1.03);
+  }
 }
 
 .shimmer-card {

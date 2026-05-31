@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MASTER_SERVICES, KOCHI_LOCALITIES, CONTACT_INFO } from '@/lib/constants';
 import { createClient } from '@/lib/supabase';
 import { uploadImageAsset, deleteImageAsset } from '@/lib/storage';
+import ReviewsManager from './ReviewsManager';
+import MediaManager from './MediaManager';
 
 // Interfaces for our database entities
 interface Blog {
@@ -58,7 +60,7 @@ export default function AdminDashboard() {
   const supabase = createClient();
 
   // Navigation tab states
-  const [activeTab, setActiveTab] = useState<'blogs' | 'pricing' | 'faqs' | 'gallery'>('blogs');
+  const [activeTab, setActiveTab] = useState<'blogs' | 'pricing' | 'faqs' | 'gallery' | 'reviews' | 'media'>('blogs');
 
   // Real-time states
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -722,6 +724,28 @@ create policy "Admin access" on public.gallery for all using (true);
               <span className="material-symbols-outlined text-lg">help_outline</span>
               Manage Operations FAQs
             </button>
+            <button
+              onClick={() => setActiveTab('reviews')}
+              className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
+                activeTab === 'reviews'
+                  ? 'bg-primary text-white shadow-md shadow-primary/15'
+                  : 'text-secondary hover:bg-surface-container'
+              }`}
+            >
+              <span className="material-symbols-outlined text-lg">rate_review</span>
+              Manage Customer Reviews
+            </button>
+            <button
+              onClick={() => setActiveTab('media')}
+              className={`w-full text-left px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
+                activeTab === 'media'
+                  ? 'bg-primary text-white shadow-md shadow-primary/15'
+                  : 'text-secondary hover:bg-surface-container'
+              }`}
+            >
+              <span className="material-symbols-outlined text-lg">photo_library</span>
+              Website Media CMS
+            </button>
           </div>
 
           <div className="bg-primary text-white p-6 rounded-3xl shadow-sm space-y-4">
@@ -938,6 +962,14 @@ create policy "Admin access" on public.gallery for all using (true);
                     )}
                   </div>
                 </div>
+              )}
+
+              {activeTab === 'reviews' && (
+                <ReviewsManager isSandbox={isSandbox} alertSystem={alertSystem} />
+              )}
+
+              {activeTab === 'media' && (
+                <MediaManager isSandbox={isSandbox} alertSystem={alertSystem} />
               )}
             </>
           )}

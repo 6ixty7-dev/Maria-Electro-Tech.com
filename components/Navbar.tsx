@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CONTACT_INFO } from '@/lib/constants';
 
 export default function Navbar() {
+  const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,8 +18,43 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Intersection Observer to track active section
+    const sections = ['services', 'why-us', 'pricing', 'blog', 'faq', 'contact'];
+    const activeObservers: { observer: IntersectionObserver; el: HTMLElement }[] = [];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          },
+          {
+            rootMargin: '-30% 0px -50% 0px', // Highlight when the section takes up the key central area of the viewport
+          }
+        );
+        observer.observe(el);
+        activeObservers.push({ observer, el });
+      }
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      activeObservers.forEach(({ observer, el }) => observer.unobserve(el));
+    };
   }, []);
+
+  const navLinks = [
+    { href: '#services', label: 'Services', id: 'services' },
+    { href: '#why-us', label: 'Why Kochi Trusts Us', id: 'why-us' },
+    { href: '#pricing', label: 'Pricing', id: 'pricing' },
+    { href: '#blog', label: 'Blog', id: 'blog' },
+    { href: '#faq', label: 'FAQs', id: 'faq' },
+    { href: '#contact', label: 'Contact', id: 'contact' },
+  ];
 
   return (
     <header
@@ -41,24 +77,25 @@ export default function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <Link href="#services" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Services
-          </Link>
-          <Link href="#why-us" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Why Kochi Trusts Us
-          </Link>
-          <Link href="#pricing" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Pricing
-          </Link>
-          <Link href="#blog" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Blog
-          </Link>
-          <Link href="#faq" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            FAQs
-          </Link>
-          <Link href="#contact" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Contact
-          </Link>
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <Link
+                key={link.id}
+                href={link.href}
+                className={`text-sm font-semibold transition-all duration-300 relative py-1 ${
+                  isActive
+                    ? 'text-primary'
+                    : 'text-secondary hover:text-primary'
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary rounded-full animate-fade-in" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA Actions */}

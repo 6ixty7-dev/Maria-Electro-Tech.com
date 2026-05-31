@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import ScrollReveal from './ui/ScrollReveal';
 
 export default function RealProcessSection() {
   const steps = [
@@ -28,15 +28,19 @@ export default function RealProcessSection() {
     <section className="py-20 bg-surface-container-low border-y border-outline-variant/20">
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
         {/* Header */}
-        <div className="text-center max-w-xl mx-auto space-y-4">
-          <p className="text-primary font-bold text-xs uppercase tracking-wider">Simple & Transparent</p>
-          <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
-            How We Get Your Home <span className="text-primary">Back to Perfect</span>
-          </h2>
-          <p className="text-secondary text-sm">
-            No complex bookings, no automated telephone loops. Just a warm, straightforward local process built for Kerala homeowners.
-          </p>
-        </div>
+        <ScrollReveal direction="up" delay={50}>
+          <div className="text-center max-w-xl mx-auto space-y-4">
+            <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1 rounded-full w-fit mx-auto">
+              Simple &amp; Transparent
+            </p>
+            <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
+              How We Get Your Home <span className="text-primary">Back to Perfect</span>
+            </h2>
+            <p className="text-secondary text-sm md:text-base">
+              No complex bookings, no automated telephone loops. Just a warm, straightforward local process built for Kerala homeowners.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Dynamic Timeline Steps */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -44,26 +48,26 @@ export default function RealProcessSection() {
           <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-0.5 bg-outline-variant/30 -translate-y-10 z-0" />
 
           {steps.map((step, idx) => (
-            <motion.div
+            <ScrollReveal
               key={idx}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="flex flex-col items-center text-center space-y-4 relative z-10 bg-white p-8 rounded-3xl border border-outline-variant/20 shadow-sm"
+              direction="up"
+              delay={idx * 120}
+              className="h-full z-10"
             >
-              {/* Step Circle */}
-              <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/10 relative">
-                <span className="material-symbols-outlined text-[26px]">{step.icon}</span>
-                <span className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-tertiary text-white flex items-center justify-center text-[10px] font-extrabold border-2 border-white">
-                  {step.num}
-                </span>
-              </div>
+              <div className="flex flex-col items-center text-center space-y-4 bg-white p-8 rounded-3xl border border-outline-variant/20 shadow-sm h-full hover:shadow-md hover:border-primary/10 transition-all duration-300">
+                {/* Step Circle */}
+                <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/10 relative shrink-0">
+                  <span className="material-symbols-outlined text-[26px]">{step.icon}</span>
+                  <span className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-tertiary text-white flex items-center justify-center text-[10px] font-extrabold border-2 border-white select-none">
+                    {step.num}
+                  </span>
+                </div>
 
-              {/* Title & Description */}
-              <h3 className="text-lg font-bold text-on-background pt-2">{step.title}</h3>
-              <p className="text-secondary text-xs md:text-sm leading-relaxed">{step.desc}</p>
-            </motion.div>
+                {/* Title & Description */}
+                <h3 className="text-lg font-bold text-on-background pt-2">{step.title}</h3>
+                <p className="text-secondary text-xs md:text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
