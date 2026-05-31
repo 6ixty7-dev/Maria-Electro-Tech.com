@@ -67,7 +67,18 @@ export default function PricingSection() {
           .order('created_at', { ascending: true });
 
         if (!error && data && data.length > 0) {
-          const mapped = data.map(item => ({
+          // De-duplicate items by normalized name to prevent layout duplication
+          const uniqueData: any[] = [];
+          const seen = new Set();
+          data.forEach(item => {
+            const normName = item.name.trim().toLowerCase();
+            if (!seen.has(normName)) {
+              seen.add(normName);
+              uniqueData.push(item);
+            }
+          });
+
+          const mapped = uniqueData.map(item => ({
             icon: item.category.toLowerCase() === 'electrical' ? 'bolt' :
                   item.category.toLowerCase() === 'plumbing' ? 'plumbing' :
                   item.category.toLowerCase() === 'inverter' ? 'battery_charging_full' :

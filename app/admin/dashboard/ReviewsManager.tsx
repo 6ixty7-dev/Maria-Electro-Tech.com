@@ -19,6 +19,23 @@ interface ReviewsManagerProps {
   alertSystem: (text: string, type?: 'success' | 'error' | 'info') => void;
 }
 
+const FALLBACK_REVIEWS: Review[] = [
+  { reviewer_name: 'Marykutty Devasia', rating: 5, review_text: 'Punctuality,good service.', review_date: '2026-05-10', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Nish', rating: 5, review_text: 'Good', review_date: '2026-05-15', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Sunitha Arun', rating: 5, review_text: 'Excellent wiring work—flawless execution, truly the best in Ernakulam!', review_date: '2026-05-18', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Aleid', rating: 5, review_text: '👍', review_date: '2026-05-20', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Adil Sk', rating: 5, review_text: 'Excellent service—polite, supportive, and customer-focused. Easily the best in Ernakulam!', review_date: '2026-05-22', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Advocate Aivan Raj', rating: 5, review_text: 'Very experienced electricians and plumbers. Thoroughly professional and meticulous in their work.', review_date: '2026-04-28', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Yedu Krishnan', rating: 5, review_text: 'Fast and professional service! Hired them for electrical work and plumbing. They even provide reliable workers for painting and CCTV installations. Very satisfied with their service!', review_date: '2026-05-02', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Athulkrishna S', rating: 5, review_text: 'Exceptional one-stop solution for electrical, plumbing, and inverter needs in Ernakulam!', review_date: '2026-05-05', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Sreyesh Ks', rating: 5, review_text: 'Whether you need a skilled electrician, a professional plumber, or reliable Luminous UPS/inverter installation, this service is highly recommended.', review_date: '2026-05-08', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Anagh K A', rating: 5, review_text: 'Exceptional electrical contractors in Ernakulam! Excellent for both residential and commercial electrical work.', review_date: '2026-05-12', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'francko', rating: 5, review_text: 'They provides better service in affordable rate', review_date: '2026-04-12', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'GEORGEE & COMPANY', rating: 5, review_text: 'They provides quality in their work. Their after services are also great and faster.', review_date: '2026-05-01', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Jacob Hurly', rating: 5, review_text: 'This company is very good service in electrical maintenance.', review_date: '2026-05-11', avatar_url: null, is_published: true, source: 'Google' },
+  { reviewer_name: 'Shankaranandhanan VA', rating: 5, review_text: 'This place has the skilled electricians in the field.', review_date: '2026-05-14', avatar_url: null, is_published: true, source: 'Google' }
+];
+
 export default function ReviewsManager({ isSandbox, alertSystem }: ReviewsManagerProps) {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,12 +58,8 @@ export default function ReviewsManager({ isSandbox, alertSystem }: ReviewsManage
       if (localR) {
         setReviews(JSON.parse(localR));
       } else {
-        const fallbacks: Review[] = [
-          { reviewer_name: 'Ananthakrishnan G.', rating: 5, review_text: 'Excellent service! They arrived within an hour for a major short circuit in our house in Kadavanthra.', review_date: '2026-04-15', avatar_url: null, is_published: true, source: 'Google' },
-          { reviewer_name: 'Riya Mathew', rating: 5, review_text: 'Very reliable plumbers in Kochi. Fixed a concealed leak in our Kakkanad apartment using proper diagnostic sensors.', review_date: '2026-05-10', avatar_url: null, is_published: true, source: 'Google' },
-        ];
-        setReviews(fallbacks);
-        localStorage.setItem('maria_reviews', JSON.stringify(fallbacks));
+        setReviews(FALLBACK_REVIEWS);
+        localStorage.setItem('maria_reviews', JSON.stringify(FALLBACK_REVIEWS));
       }
     } else {
       try {

@@ -154,27 +154,32 @@ create policy "Allow admin modify site_media" on public.site_media
 -- Starter Seed Data
 -- ==========================================
 
+-- Clean old seeds to avoid duplicates on re-runs
+delete from public.pricing;
+delete from public.faqs;
+delete from public.admin_users;
+delete from public.blogs;
+delete from public.reviews;
+delete from public.site_media;
+
 -- Seed Pricing Packages
 insert into public.pricing (name, price, period, category, features, is_popular) values
 ('Basic Electrical callout', '149', 'visit', 'Electrical', array['Professional, vetted electrician', 'Transparent diagnostic check', 'Safety standards inspection', 'Upfront pricing before work'], false),
 ('Advanced Plumbing repair', '299', 'visit', 'Plumbing', array['Highly experienced plumber', 'Pipe-pressure diagnostics', 'High-quality replacement materials', 'Reliable service standards'], true),
 ('CCTV Camera Setup', '999', 'point', 'CCTV', array['Full mobile app camera sync', 'Discreet conduit cabling runs', 'Angle adjustments & blindspot analysis', 'Complimentary storage review'], false),
-('AMC Plan (Elite Care)', '4999', 'year', 'Maintenance', array['4 Periodic preventive inspections', 'Zero visit charges for emergency dispatches', 'Full house electrical & water safety check', 'Priority technician booking slots'], false)
-on conflict do nothing;
+('AMC Plan (Elite Care)', '4999', 'year', 'Maintenance', array['4 Periodic preventive inspections', 'Zero visit charges for emergency dispatches', 'Full house electrical & water safety check', 'Priority technician booking slots'], false);
 
 -- Seed Dispatch FAQs
 insert into public.faqs (question, answer, category) values
 ('What is your emergency response time in Kochi?', 'For major power failures, electrical short circuits, or critical plumbing leaks within Ernakulam, we prioritize urgent dispatches. Our mobile emergency support technicians typically reach Edappally, Kakkanad, Vyttila, Palarivattom, and Kadavanthra within 45 to 60 minutes.', 'General'),
 ('Are your electricians and plumbers certified in Kerala?', 'Yes, absolutely. Every single technician is a background-vetted, experienced professional. Our team holds formal technical certifications and adheres strictly to domestic safety standards and Kerala electrical guidelines.', 'Safety'),
 ('Do you stand behind your workmanship?', 'We pride ourselves on professional workmanship and high quality standards. If you experience any issues related to our repair, contact us and we will promptly return to inspect and resolve any service deficiency under our standard professional care.', 'Warranty'),
-('How do you charge for parts and materials?', 'We practice complete billing transparency. Our base charges are fixed and flat. If parts are required, we explain the diagnostic issue first, provide an upfront estimate, and source high-quality materials. You are also welcome to procure the parts yourself.', 'Billing')
-on conflict do nothing;
+('How do you charge for parts and materials?', 'We practice complete billing transparency. Our base charges are fixed and flat. If parts are required, we explain the diagnostic issue first, provide an upfront estimate, and source high-quality materials. You are also welcome to procure the parts yourself.', 'Billing');
 
 -- Seed whitelisted Operations Administrators
 insert into public.admin_users (email) values
 ('mariaelectrotech.kochi@gmail.com'),
-('admin@mariaelectrotech.com')
-on conflict do nothing;
+('admin@mariaelectrotech.com');
 
 -- Seed Blogs (SEO Local Authority Articles)
 insert into public.blogs (title, slug, content, seo_description, image_url, storage_path, category, tags, is_published) values
@@ -210,18 +215,24 @@ insert into public.blogs (title, slug, content, seo_description, image_url, stor
   'Plumbing Guides',
   array['plumber near Kakkanad', 'leak detection Kochi'],
   true
-)
-on conflict do nothing;
+);
 
--- Seed Google Reviews Fallbacks
+-- Seed Google Reviews (14 REAL Google Reviews from Ernakulam Clients)
 insert into public.reviews (reviewer_name, rating, review_text, review_date, avatar_url, is_published, source) values
-('Ananthakrishnan G.', 5, 'Excellent service! They arrived within an hour for a major short circuit in our house in Kadavanthra. The electrician was highly professional, diagnosed the issue quickly, and resolved it with upfront pricing. Highly recommended!', '2026-04-15', null, true, 'Google'),
-('Riya Mathew', 5, 'Very reliable plumbers in Kochi. Fixed a concealed leak in our Kakkanad apartment using proper diagnostic sensors without breaking the entire wall. Transparent billing and very professional behavior.', '2026-05-10', null, true, 'Google'),
-('Faisal Rahman', 5, 'Maria Electro Tech team installed a double-battery UPS inverter system at our home in Edappally. Clean cabling, excellent service, and clear instructions. Perfect solution for summer power cuts.', '2026-05-22', null, true, 'Google'),
-('Saritha Nair', 4, 'Booked their AMC Elite Care plan for our villa in Vyttila. The team is professional, conducted a thorough electrical and plumbing safety audit. Very satisfied with their systematic approach.', '2026-03-29', null, true, 'Google'),
-('George Varghese', 5, 'Top notch CCTV camera installation in Palarivattom. Clean conduit routing and precise setup. The technician was polite and explained the mobile app syncing perfectly.', '2026-04-02', null, true, 'Google'),
-('Meera Pillai', 5, 'Emergency plumbing callout for a broken flush valve late evening. They resolved it efficiently. Very reasonable rate compared to local independent plumbers who usually overcharge.', '2026-05-15', null, true, 'Google')
-on conflict (id) do nothing;
+('Marykutty Devasia', 5, 'Punctuality,good service.', '2026-05-10', null, true, 'Google'),
+('Nish', 5, 'Good', '2026-05-15', null, true, 'Google'),
+('Sunitha Arun', 5, 'Excellent wiring work—flawless execution, truly the best in Ernakulam!', '2026-05-18', null, true, 'Google'),
+('Aleid', 5, '👍', '2026-05-20', null, true, 'Google'),
+('Adil Sk', 5, 'Excellent service—polite, supportive, and customer-focused. Easily the best in Ernakulam!', '2026-05-22', null, true, 'Google'),
+('Advocate Aivan Raj', 5, 'Very experienced electricians and plumbers. Thoroughly professional and meticulous in their work.', '2026-04-28', null, true, 'Google'),
+('Yedu Krishnan', 5, 'Fast and professional service! Hired them for electrical work and plumbing. They even provide reliable workers for painting and CCTV installations. Very satisfied with their service!', '2026-05-02', null, true, 'Google'),
+('Athulkrishna S', 5, 'Exceptional one-stop solution for electrical, plumbing, and inverter needs in Ernakulam!', '2026-05-05', null, true, 'Google'),
+('Sreyesh Ks', 5, 'Whether you need a skilled electrician, a professional plumber, or reliable Luminous UPS/inverter installation, this service is highly recommended.', '2026-05-08', null, true, 'Google'),
+('Anagh K A', 5, 'Exceptional electrical contractors in Ernakulam! Excellent for both residential and commercial electrical work.', '2026-05-12', null, true, 'Google'),
+('francko', 5, 'They provides better service in affordable rate', '2026-04-12', null, true, 'Google'),
+('GEORGEE & COMPANY', 5, 'They provides quality in their work. Their after services are also great and faster.', '2026-05-01', null, true, 'Google'),
+('Jacob Hurly', 5, 'This company is very good service in electrical maintenance.', '2026-05-11', null, true, 'Google'),
+('Shankaranandhanan VA', 5, 'This place has the skilled electricians in the field.', '2026-05-14', null, true, 'Google');
 
 -- Seed Default Site Media (Fallback section images from current design system)
 insert into public.site_media (section_key, image_url, alt_text) values
@@ -231,5 +242,4 @@ insert into public.site_media (section_key, image_url, alt_text) values
 ('service_plumbing', 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop', 'Professional plumbing repairs and diagnostic leak check'),
 ('service_cctv', 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=800&auto=format&fit=crop', 'Discreet CCTV surveillance systems setup'),
 ('service_inverter', 'https://images.unsplash.com/photo-1563770660941-20978e870e26?q=80&w=800&auto=format&fit=crop', 'Domestic inverter and battery backup systems installation'),
-('service_maintenance', 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=800&auto=format&fit=crop', 'Comprehensive AMC preventative maintenance audits')
-on conflict (section_key) do update set image_url = excluded.image_url;
+('service_maintenance', 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?q=80&w=800&auto=format&fit=crop', 'Comprehensive AMC preventative maintenance audits');
