@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createClient } from '@/lib/supabase';
+import ScrollReveal from './ui/ScrollReveal';
 
 interface FAQItem {
   q: string;
@@ -16,12 +17,12 @@ export default function FAQSection() {
       a: 'For major power failures, electrical short circuits, or critical plumbing leaks within Ernakulam, we prioritize urgent dispatches. Our mobile emergency support technicians typically reach Edappally, Kakkanad, Vyttila, Palarivattom, and Kadavanthra within 45 to 60 minutes.'
     },
     {
-      q: 'Are your electricians and plumbers licensed in Kerala?',
-      a: 'Yes, absolutely. Every single technician is a background-vetted, direct employee of Maria Electro Tech. Our electricians hold formal Kerala State Electricity Board (KSEB) certifications, ensuring compliance with strict domestic safety guidelines.'
+      q: 'Are your technicians experienced and trained?',
+      a: 'Yes, absolutely. Every technician is a background-vetted, direct employee of Maria Electro Tech. Our team is trained and experienced in domestic electrical and plumbing work in Kerala, and we follow safe, quality-focused practices on every job.'
     },
     {
-      q: 'Do you offer a warranty on service repairs?',
-      a: 'We provide a 30-day structural workmanship warranty on all labor. If the exact same issue arises within 30 days of our repair, we return and fix it completely free of charge. Any materials replaced are backed by their respective manufacturer warranties.'
+      q: 'Do you stand behind the quality of your work?',
+      a: 'Absolutely. We take accountability for our workmanship seriously. If an issue recurs due to our repair, contact us and we will assess and address it promptly under our standard professional care. Materials replaced are backed by the respective manufacturer warranties.'
     },
     {
       q: 'How do you charge for parts and materials?',
@@ -61,64 +62,68 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-surface">
-      <div className="max-w-3xl mx-auto px-6 space-y-12">
+    <section id="faq" className="py-20 bg-transparent">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit mx-auto">
-            Clear Answers
-          </p>
-          <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-secondary text-sm">
-            Everything you need to know about our local Kochi dispatches, warranties, and licensed vetting.
-          </p>
-        </div>
+        <ScrollReveal direction="up" delay={50}>
+          <div className="text-center space-y-4">
+            <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit mx-auto">
+              Clear Answers
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-on-background">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-secondary text-sm md:text-base">
+              Everything you need to know about our local Kochi service process, technicians, and pricing.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Accordion List */}
-        <div className="space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = openIdx === idx;
-            return (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl border border-outline-variant/20 shadow-sm overflow-hidden transition-all duration-300"
-              >
-                <button
-                  onClick={() => toggle(idx)}
-                  className="w-full p-6 text-left flex justify-between items-center group focus:outline-none select-none"
+        <ScrollReveal direction="up" delay={150}>
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openIdx === idx;
+              return (
+                <div
+                  key={idx}
+                  className="glass-panel bg-white/40 border border-white/50 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] overflow-hidden transition-all duration-300"
                 >
-                  <span className="font-bold text-sm sm:text-base text-on-background group-hover:text-primary transition-colors">
-                    {faq.q}
-                  </span>
-                  <motion.span
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="material-symbols-outlined text-primary text-xl shrink-0 ml-4"
+                  <button
+                    onClick={() => toggle(idx)}
+                    className="w-full p-4 sm:p-6 text-left flex justify-between items-center group focus:outline-none select-none cursor-pointer"
                   >
-                    expand_more
-                  </motion.span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                    <span className="font-bold text-sm sm:text-base text-on-background group-hover:text-primary transition-colors pr-4">
+                      {faq.q}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
+                      className="material-symbols-outlined text-primary text-xl shrink-0"
                     >
-                      <div className="px-6 pb-6 pt-2 text-secondary text-xs sm:text-sm leading-relaxed border-t border-outline-variant/5">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
+                      expand_more
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-secondary text-xs sm:text-sm leading-relaxed border-t border-outline-variant/5">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

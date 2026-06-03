@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0059b5;
+  --color-primary: #0058bc;
   --color-on-primary: #ffffff;
-  --color-primary-container: #0071e3;
-  --color-on-primary-container: #fcfbff;
+  --color-primary-container: #0070eb;
+  --color-on-primary-container: #fefcff;
   --color-secondary: #5d5e60;
-  --color-tertiary: #006a36;
-  --color-tertiary-container: #008645;
-  --color-on-tertiary-container: #f4fff2;
-  --color-background: #fcf8fb;
-  --color-on-background: #1b1b1d;
-  --color-surface: #fcf8fb;
-  --color-on-surface: #1b1b1d;
-  --color-surface-container-low: #f6f3f5;
-  --color-surface-container: #f0edef;
-  --color-surface-container-high: #eae7ea;
-  --color-surface-container-highest: #e4e2e4;
-  --color-surface-variant: #e4e2e4;
-  --color-on-surface-variant: #414753;
-  --color-outline: #717785;
-  --color-outline-variant: #c1c6d6;
+  --color-tertiary: #5c5c5c;
+  --color-tertiary-container: #747474;
+  --color-on-tertiary-container: #fcfcfc;
+  --color-background: #faf9fe;
+  --color-on-background: #1a1b1f;
+  --color-surface: #faf9fe;
+  --color-on-surface: #1a1b1f;
+  --color-surface-container-low: #f4f3f8;
+  --color-surface-container: #eeedf3;
+  --color-surface-container-high: #e9e7ed;
+  --color-surface-container-highest: #e3e2e7;
+  --color-surface-variant: #e3e2e7;
+  --color-on-surface-variant: #414755;
+  --color-outline: #717786;
+  --color-outline-variant: #c1c6d7;
   --color-error: #ba1a1a;
   --color-error-container: #ffdad6;
   --color-on-error-container: #93000a;
@@ -29,7 +29,7 @@
   --spacing-section-padding: 80px;
   --spacing-stack-lg: 48px;
   --spacing-container-margin: 24px;
-  --spacing-gutter: 16px;
+  --spacing-gutter: 24px;
   --spacing-stack-sm: 12px;
   --spacing-stack-md: 24px;
   
@@ -37,10 +37,10 @@
   --font-display: 'Inter', sans-serif;
 }
 
-/* ─── CSS Variables & Custom Animations ─── */
+/* ─── CSS Variables & Cinematic Redesign Styles ─── */
 
 :root {
-  --premium-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+  --premium-bezier: cubic-bezier(0.16, 1, 0.3, 1);
   --spring-bezier: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -56,72 +56,103 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Selective Glassmorphism Classes ─── */
+/* ─── Continuous Background Gradient & Accents ─── */
+
+.page-gradient {
+  background: linear-gradient(180deg, #faf9fe 0%, #f4f3f8 30%, #eeedf3 70%, #ffffff 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-size: 100% 200%;
+  transition: background-position 0.1s linear;
+}
+
+.glow-accent {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 88, 188, 0.04) 0%, rgba(250, 249, 254, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Frosted Glassmorphism Styles (Performance Optimized) ─── */
 
 .glass-navbar {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 0.5px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  position: relative;
+  will-change: transform;
 }
 
-.glass-card {
+.glass-panel {
   background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 0.5px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--premium-bezier), box-shadow 0.4s var(--premium-bezier), border-color 0.3s ease;
+  will-change: transform;
 }
 
-.liquid-shadow {
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.04);
+@media (min-width: 768px) {
+  .glass-navbar {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .glass-panel {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+
+/* Mouse Tracking Hover Glow for Glass Elements */
+.glass-panel::before, .glass-navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle 120px at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.45), transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-panel:hover::before, .glass-navbar:hover::before {
+  opacity: 1;
 }
 
 .spring-hover {
-  transition: transform 0.4s var(--spring-bezier), background-color 0.3s var(--premium-bezier);
-}
-.spring-hover:hover {
-  transform: scale(1.03);
+  transition: transform 0.4s var(--spring-bezier), background-color 0.3s var(--premium-bezier), border-color 0.3s ease, box-shadow 0.4s var(--premium-bezier);
+  will-change: transform;
 }
 
-.shimmer-card {
-  position: relative;
-  overflow: hidden;
+@media (min-width: 640px) {
+  .spring-hover:hover {
+    transform: scale(1.015) translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 88, 188, 0.04);
+    border-color: rgba(0, 88, 188, 0.2);
+  }
 }
 
-.shimmer-card::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 45%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.1) 55%,
-    transparent 100%
-  );
-  transform: rotate(45deg);
-  animation: shimmer 12s infinite linear;
-  pointer-events: none;
+/* ─── Cinematic Animation Effects ─── */
+
+.animate-breathing {
+  animation: breathing 8s ease-in-out infinite;
 }
 
-@keyframes shimmer {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
-.float-anim {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes breathing {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.01) translateY(-6px); }
+  100% { transform: scale(1) translateY(0); }
 }
 
 /* ─── Scroll Reveal ─── */
@@ -136,8 +167,6 @@ body {
   transform: translateY(0);
 }
 
-/* ─── Custom Utilities ─── */
-
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -150,4 +179,31 @@ body {
 /* ─── Mobile Styling Safe-area ─── */
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ─── Mobile-First Responsive Overrides ─── */
+
+/* Tighter section padding on mobile */
+@media (max-width: 639px) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Disable expensive floating animation on mobile */
+  .animate-breathing {
+    animation: none !important;
+  }
+
+  /* Reduce glow accent sizes to prevent off-screen painting */
+  .glow-accent {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CONTACT_INFO } from '@/lib/constants';
 
 export default function Navbar() {
+  const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,15 +18,57 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Intersection Observer to track active section
+    const sections = ['services', 'why-us', 'pricing', 'blog', 'faq', 'contact'];
+    const activeObservers: { observer: IntersectionObserver; el: HTMLElement }[] = [];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          },
+          {
+            rootMargin: '-30% 0px -50% 0px', // Highlight when the section takes up the key central area of the viewport
+          }
+        );
+        observer.observe(el);
+        activeObservers.push({ observer, el });
+      }
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      activeObservers.forEach(({ observer, el }) => observer.unobserve(el));
+    };
   }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
+  const navLinks = [
+    { href: '#services', label: 'Services', id: 'services' },
+    { href: '#why-us', label: 'Why Kochi Trusts Us', id: 'why-us' },
+    { href: '#pricing', label: 'Pricing', id: 'pricing' },
+    { href: '#blog', label: 'Blog', id: 'blog' },
+    { href: '#faq', label: 'FAQs', id: 'faq' },
+    { href: '#contact', label: 'Contact', id: 'contact' },
+  ];
 
   return (
     <header
-      className={`fixed left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl border-[0.5px] border-white/40 backdrop-blur-xl transition-all duration-500 ${
+      onMouseMove={handleMouseMove}
+      className={`fixed left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl border border-white/55 glass-navbar transition-all duration-500 ${
         isScrolled
-          ? 'top-2 bg-white/95 shadow-md py-3 px-6 rounded-2xl md:rounded-full'
-          : 'top-4 bg-white/70 shadow-sm py-4 px-8 rounded-full'
+          ? 'top-2 bg-white/80 shadow-xl py-2.5 sm:py-3 px-4 sm:px-6 rounded-2xl md:rounded-full'
+          : 'top-4 bg-white/50 shadow-md py-3 sm:py-4 px-5 sm:px-8 rounded-full'
       }`}
     >
       <div className="flex justify-between items-center w-full">
@@ -34,31 +77,32 @@ export default function Navbar() {
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg select-none">
             M
           </div>
-          <span className="font-display font-bold text-lg md:text-xl text-primary tracking-tight group-hover:opacity-90 transition-opacity">
+          <span className="font-display font-bold text-base sm:text-lg md:text-xl text-primary tracking-tight group-hover:opacity-90 transition-opacity">
             Maria Electro Tech
           </span>
         </Link>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <Link href="#services" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Services
-          </Link>
-          <Link href="#why-us" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Why Kochi Trusts Us
-          </Link>
-          <Link href="#pricing" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Pricing
-          </Link>
-          <Link href="#blog" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Blog
-          </Link>
-          <Link href="#faq" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            FAQs
-          </Link>
-          <Link href="#contact" className="text-body-sm font-semibold text-secondary hover:text-primary transition-colors spring-hover">
-            Contact
-          </Link>
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <Link
+                key={link.id}
+                href={link.href}
+                className={`text-sm font-semibold transition-all duration-300 relative py-1 ${
+                  isActive
+                    ? 'text-primary'
+                    : 'text-secondary hover:text-primary'
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary rounded-full animate-fade-in" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* CTA Actions */}

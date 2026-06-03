@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const { service, locality } = match;
   const title = `Premium ${service.category} in ${locality.name} | Maria Electro Tech Kochi`;
-  const desc = `Certified local ${service.name.toLowerCase()} in ${locality.name}, Kochi. Experienced, licensed technicians, 45-60 min priority emergency dispatch, upfront pricing, 30-day warranty. Book instantly!`;
+  const desc = `Trusted local ${service.name.toLowerCase()} in ${locality.name}, Kochi. Skilled & experienced technicians, priority emergency dispatch, transparent pricing. Call or WhatsApp to book today!`;
 
   return {
     title,
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       `${service.key} ${locality.key}`,
       `${service.name.toLowerCase()} in ${locality.name.toLowerCase()}`,
       `best ${service.key} in ${locality.name.toLowerCase()}`,
-      `licensed ${service.key} near me`,
+      `${service.key} near me`,
       `ernakulam ${service.key} repair`
     ],
     openGraph: {
@@ -113,8 +113,8 @@ export default async function ServiceLocalityPage({ params }: { params: Promise<
       a: `No, we do not believe in surprise charges. Our basic service fee starts at a flat ₹${service.startsAt}. You receive a direct digital estimate of the repair before any work starts. You only pay for successful resolutions.`
     },
     {
-      q: `What workmanship guarantees apply to services in ${locality.name}?`,
-      a: `All our labor is backed by a 30-day structural workmanship guarantee. If the exact same issue recurs near ${locality.name} within 30 days, our uniformed technician returns to rectify it immediately without labor charges.`
+      q: `What does ${service.name.toLowerCase()} service quality include in ${locality.name}?`,
+      a: `Maria Electro Tech stands behind every job we do in ${locality.name}. If an issue recurs due to our work, contact us and we will address it promptly. We use quality materials and follow safe, thorough practices on each visit.`
     }
   ];
 
@@ -123,14 +123,14 @@ export default async function ServiceLocalityPage({ params }: { params: Promise<
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     'name': `Maria Electro Tech - ${service.name} ${locality.name}`,
-    'description': `Certified local ${service.name.toLowerCase()} in ${locality.name}, Kochi. Backed by KSEB state licensing and a 30-day labor warranty.`,
+    'description': `Trusted local ${service.name.toLowerCase()} in ${locality.name}, Kochi. Skilled technicians, transparent pricing, and dependable service.`,
     'telephone': CONTACT_INFO.phone,
     'address': {
       '@type': 'PostalAddress',
       'streetAddress': CONTACT_INFO.address,
       'addressLocality': locality.name,
       'addressRegion': 'Kerala',
-      'postalCode': '682024',
+      'postalCode': '682016',
       'addressCountry': 'IN'
     },
     'geo': {
@@ -183,7 +183,7 @@ export default async function ServiceLocalityPage({ params }: { params: Promise<
               Premium <span className="text-primary">{service.name}</span> in <span className="text-primary">{locality.name}</span>
             </h1>
             <p className="text-secondary text-sm md:text-base leading-relaxed">
-              Looking for a dependable, background-vetted specialist in {locality.name}, Kochi? Maria Electro Tech brings licensed, uniformed professionals backed by a 30-day labor warranty right to your doorstep.
+              Looking for a reliable, experienced specialist in {locality.name}, Kochi? Maria Electro Tech brings skilled, uniformed professionals with honest pricing right to your doorstep.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
@@ -218,9 +218,9 @@ export default async function ServiceLocalityPage({ params }: { params: Promise<
               <li className="flex gap-3">
                 <span className="material-symbols-outlined text-primary text-xl select-none shrink-0">verified</span>
                 <div>
-                  <h4 className="font-bold text-xs text-on-background">Certified & Background Vetted</h4>
+                  <h4 className="font-bold text-xs text-on-background">Skilled &amp; Background Vetted</h4>
                   <p className="text-[11px] text-secondary mt-0.5">
-                    State KSEB-licensing safety compliance and direct identity-vetted employees.
+                    Experienced, identity-verified direct employees. No third-party contractors.
                   </p>
                 </div>
               </li>
@@ -229,7 +229,7 @@ export default async function ServiceLocalityPage({ params }: { params: Promise<
                 <div>
                   <h4 className="font-bold text-xs text-on-background">Flat Pricing Structure</h4>
                   <p className="text-[11px] text-secondary mt-0.5">
-                    Flat ₹{service.startsAt} baseline repair charges with a 30-day labor guarantee.
+                    Starting from ₹{service.startsAt}. Clear estimate provided before any work begins.
                   </p>
                 </div>
               </li>

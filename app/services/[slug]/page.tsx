@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!service) return {};
 
   const title = `Premium ${service.name} in Kochi | Licensed ${service.category} Repairs`;
-  const desc = `${service.description} Fast dispatch in Ernakulam. Upfront prices, background-checked KSEB electricians and plumbers with a 30-day labor warranty.`;
+  const desc = `${service.description} Fast dispatch in Ernakulam. Upfront pricing, background-checked skilled technicians — call or WhatsApp to book.`;
 
   return {
     title,
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: [
       `kochi ${service.key}`,
       `best ${service.name.toLowerCase()} in kochi`,
-      `licensed ${service.category.toLowerCase()}`,
+      `${service.category.toLowerCase()} near me kochi`,
       `ernakulam ${service.key} contract`
     ],
     openGraph: {
@@ -53,7 +53,7 @@ export default async function ServiceProfilePage({ params }: { params: Promise<{
               Premium <span className="text-primary">{service.name}</span>
             </h1>
             <p className="text-secondary text-sm md:text-base leading-relaxed">
-              {service.description} Backed by KSEB state licensing, verified professional checklists, and a clean workmanship guarantee.
+              {service.description} Delivered by skilled, experienced professionals with transparent billing and quality-focused workmanship.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a

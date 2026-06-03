@@ -1,126 +1,97 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { createClient } from '@/lib/supabase';
-import { ALLOWED_USERS } from '@/lib/constants';
+import { ALLOWED_ADMIN_PHONES, ADMIN_PIN } from '@/lib/constants';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Auth Context Types
+// We don't use Supabase Auth for admin login.
+// Authentication = correct phone number + 4-digit PIN.
+// Session is stored in sessionStorage (cleared on tab close).
+// ─────────────────────────────────────────────────────────────────────────────
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
+  // 'user' is the verified phone number string when logged in, null otherwise
+  user: string | null;
   isAllowed: boolean;
   isLoading: boolean;
-  isCheckingWhitelist: boolean;
-  signInWithGoogle: () => Promise<void>;
-  signOut: () => Promise<void>;
+  verifyPin: (phone: string, pin: string) => { success: boolean; error: string | null };
+  signOut: () => void;
 }
+
+const SESSION_KEY = 'met_admin_session';
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
-  session: null,
   isAllowed: false,
   isLoading: true,
-  isCheckingWhitelist: false,
-  signInWithGoogle: async () => {},
-  signOut: async () => {},
+  verifyPin: () => ({ success: false, error: null }),
+  signOut: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<string | null>(null);
   const [isAllowed, setIsAllowed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isCheckingWhitelist, setIsCheckingWhitelist] = useState(false);
-  const supabase = createClient();
 
+  // Restore session from sessionStorage on mount
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
+    try {
+      const stored = sessionStorage.getItem(SESSION_KEY);
+      if (stored) {
+        const { phone } = JSON.parse(stored);
+        if (phone && ALLOWED_ADMIN_PHONES.includes(phone)) {
+          setUser(phone);
+          setIsAllowed(true);
+        }
       }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
+    } catch {
+      // sessionStorage unavailable (SSR) — ignore
+    } finally {
       setIsLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    }
   }, []);
 
-  useEffect(() => {
-    if (!user?.email) {
-      setIsAllowed(false);
-      setIsCheckingWhitelist(false);
-      return;
+  /**
+   * Verify phone number + PIN combination.
+   * Returns { success: true } on match, or { success: false, error: '...' } on failure.
+   * Does NOT involve any network call — entirely local.
+   */
+  const verifyPin = (phone: string, pin: string): { success: boolean; error: string | null } => {
+    // Normalize phone — strip spaces, ensure +91 prefix
+    const normalized = phone.replace(/[\s\-()]/g, '');
+    const withPlus = normalized.startsWith('+') ? normalized : `+91${normalized}`;
+
+    if (!ALLOWED_ADMIN_PHONES.includes(withPlus)) {
+      return { success: false, error: 'This phone number is not registered for admin access.' };
     }
 
-    const email = user.email.toLowerCase();
-
-    // 1. Check Env Whitelist (Comma-Separated)
-    const envEmailsStr = process.env.NEXT_PUBLIC_ALLOWED_ADMIN_EMAILS || '';
-    if (envEmailsStr) {
-      const envEmails = envEmailsStr.split(',').map(e => e.trim().toLowerCase());
-      if (envEmails.includes(email)) {
-        setIsAllowed(true);
-        setIsCheckingWhitelist(false);
-        return;
-      }
+    if (pin !== ADMIN_PIN) {
+      return { success: false, error: 'Incorrect PIN. Please try again.' };
     }
 
-    // 2. Check Static Whitelist Constants
-    if (ALLOWED_USERS.map(e => e.toLowerCase()).includes(email)) {
-      setIsAllowed(true);
-      setIsCheckingWhitelist(false);
-      return;
+    // Save session
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ phone: withPlus }));
+    } catch {
+      // sessionStorage write failed — proceed anyway (in-memory session)
     }
 
-    // 3. Check Supabase DB Table Whitelist (admin_users)
-    async function checkDbWhitelist() {
-      setIsCheckingWhitelist(true);
-      try {
-        const { data, error } = await supabase
-          .from('admin_users')
-          .select('email')
-          .eq('email', email)
-          .maybeSingle();
-
-        if (!error && data) {
-          setIsAllowed(true);
-        } else {
-          setIsAllowed(false);
-        }
-      } catch (err) {
-        console.warn('Database whitelist check bypassed/failed, locking route access:', err);
-        setIsAllowed(false);
-      } finally {
-        setIsCheckingWhitelist(false);
-      }
-    }
-
-    checkDbWhitelist();
-  }, [user]);
-
-  const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
+    setUser(withPlus);
+    setIsAllowed(true);
+    return { success: true, error: null };
   };
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
+  const signOut = () => {
+    try {
+      sessionStorage.removeItem(SESSION_KEY);
+    } catch { /* ignore */ }
     setUser(null);
-    setSession(null);
     setIsAllowed(false);
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isAllowed, isLoading, isCheckingWhitelist, signInWithGoogle, signOut }}>
+    <AuthContext.Provider value={{ user, isAllowed, isLoading, verifyPin, signOut }}>
       {children}
     </AuthContext.Provider>
   );
