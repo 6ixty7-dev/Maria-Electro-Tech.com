@@ -32,14 +32,14 @@ export default function RealProcessSection() {
 
   return (
     <section className="py-20 bg-transparent border-y border-outline-variant/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
           <div className="text-center max-w-xl mx-auto space-y-4">
             <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1 rounded-full w-fit mx-auto">
               Simple &amp; Transparent
             </p>
-            <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-on-background">
               How We Get Your Home <span className="text-primary">Back to Perfect</span>
             </h2>
             <p className="text-secondary text-sm md:text-base">
@@ -49,7 +49,7 @@ export default function RealProcessSection() {
         </ScrollReveal>
 
         {/* Dynamic Timeline Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 relative">
           {/* Connector Line on Desktop */}
           <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-0.5 bg-outline-variant/20 -translate-y-10 z-0" />
 
@@ -62,7 +62,7 @@ export default function RealProcessSection() {
             >
               <div 
                 onMouseMove={handleMouseMove}
-                className="glass-panel spring-hover bg-white/40 border border-white/50 p-8 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] h-full flex flex-col items-center text-center space-y-4"
+                className="glass-panel spring-hover bg-white/40 border border-white/50 p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] h-full flex flex-col items-center text-center space-y-3 sm:space-y-4"
               >
                 {/* Step Circle */}
                 <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/10 relative shrink-0">

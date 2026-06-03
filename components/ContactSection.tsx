@@ -35,8 +35,8 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-20 bg-transparent border-t border-outline-variant/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           
           {/* Contact Details & Info */}
           <div className="space-y-8">
@@ -44,7 +44,7 @@ export default function ContactSection() {
               <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit">
                 Instant Response
               </p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight text-on-background">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight text-on-background">
                 Let’s Get Your Home <span className="text-primary">Back to Perfect.</span>
               </h2>
               <p className="text-secondary text-sm md:text-base leading-relaxed">
@@ -95,7 +95,7 @@ export default function ContactSection() {
             </div>
 
             {/* Premium Coverage Map Overlay */}
-            <div className="relative rounded-3xl overflow-hidden aspect-[16/9] border border-white/50 shadow-md">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[16/9] border border-white/50 shadow-md">
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoW_l-8elht7OllsE0CW8Qw7q3eR8dhDM-Py5P54BY66pVdoTIQuPYuv5TEki24XHYuYdmYfhHMt9aLM7lr4XcRpXvzSfT67l1aRHtThg-CNwz89uRw6g1h-Uem0pLjks_B3kcqAyJVfRFu8fdOwLfS9kXke5gHdH-p1XsgRVr-KknhnnPssBl8gRWTt8LTXlEiRhs9VR9-b5poyEOOSCCL2a-eQO6lrML8BZYNkvCSXRZIBR5HcNfBfUfusdfqU3eGEkPRKzt5_8"
                 alt="Kochi Ernakulam Service Territory Map"
@@ -113,7 +113,7 @@ export default function ContactSection() {
           </div>
 
           {/* Clean Offline Form */}
-          <div className="glass-panel bg-white/50 border border-white/60 p-8 rounded-3xl shadow-xl">
+          <div className="glass-panel bg-white/50 border border-white/60 p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl">
             <h3 className="text-xl font-bold text-on-background mb-1">Schedule a Visit</h3>
             <p className="text-secondary text-xs mb-6">
               Complete this brief form. Submitting will instantly prepare your WhatsApp booking ticket.
@@ -144,7 +144,7 @@ export default function ContactSection() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[11px] font-extrabold uppercase text-on-surface-variant mb-1">Your Locality</label>
                   <select

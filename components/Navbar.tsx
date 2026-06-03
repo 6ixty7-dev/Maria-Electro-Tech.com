@@ -67,8 +67,8 @@ export default function Navbar() {
       onMouseMove={handleMouseMove}
       className={`fixed left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl border border-white/55 glass-navbar transition-all duration-500 ${
         isScrolled
-          ? 'top-2 bg-white/80 shadow-xl py-3 px-6 rounded-2xl md:rounded-full'
-          : 'top-4 bg-white/50 shadow-md py-4 px-8 rounded-full'
+          ? 'top-2 bg-white/80 shadow-xl py-2.5 sm:py-3 px-4 sm:px-6 rounded-2xl md:rounded-full'
+          : 'top-4 bg-white/50 shadow-md py-3 sm:py-4 px-5 sm:px-8 rounded-full'
       }`}
     >
       <div className="flex justify-between items-center w-full">
@@ -77,7 +77,7 @@ export default function Navbar() {
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg select-none">
             M
           </div>
-          <span className="font-display font-bold text-lg md:text-xl text-primary tracking-tight group-hover:opacity-90 transition-opacity">
+          <span className="font-display font-bold text-base sm:text-lg md:text-xl text-primary tracking-tight group-hover:opacity-90 transition-opacity">
             Maria Electro Tech
           </span>
         </Link>

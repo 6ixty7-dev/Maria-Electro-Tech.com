@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function BottomNavBar() {
   return (
-    <nav className="fixed bottom-0 left-0 w-full rounded-t-3xl border-t border-white/40 md:hidden bg-white/40 backdrop-blur-2xl shadow-2xl z-50 flex justify-around items-center px-4 py-3 pb-safe">
+    <nav className="fixed bottom-0 left-0 w-full rounded-t-2xl border-t border-outline-variant/20 md:hidden bg-white/90 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 flex justify-around items-center px-4 py-2.5 pb-safe">
       <Link href="/" className="flex flex-col items-center justify-center text-primary font-bold">
         <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>
           home

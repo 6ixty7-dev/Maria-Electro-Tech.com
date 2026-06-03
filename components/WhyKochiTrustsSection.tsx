@@ -22,14 +22,14 @@ export default function WhyKochiTrustsSection() {
 
   return (
     <section id="why-us" className="py-20 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
         {/* Section Header */}
         <ScrollReveal direction="up" delay={50}>
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit mx-auto">
               Reliability &amp; Accountability
             </p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight text-on-background">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight text-on-background">
               Why Kochi Trusts <span className="text-primary">Maria Electro Tech</span>
             </h2>
             <p className="text-secondary text-sm md:text-base">
@@ -39,7 +39,7 @@ export default function WhyKochiTrustsSection() {
         </ScrollReveal>
 
         {/* Dynamic Trust Badges Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {TRUST_BADGES.map((badge, idx) => (
             <ScrollReveal
               key={idx}
@@ -49,7 +49,7 @@ export default function WhyKochiTrustsSection() {
             >
               <div 
                 onMouseMove={handleMouseMove}
-                className="glass-panel spring-hover bg-white/40 border border-white/50 p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] h-full flex flex-col justify-between"
+                className="glass-panel spring-hover bg-white/40 border border-white/50 p-5 sm:p-6 rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] h-full flex flex-col justify-between"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
@@ -65,9 +65,9 @@ export default function WhyKochiTrustsSection() {
 
         {/* Technician Licensing and Safety Spotlight */}
         <ScrollReveal direction="up" delay={200}>
-          <div className="glass-panel bg-white/30 border border-white/45 p-8 rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-12">
+          <div className="glass-panel bg-white/30 border border-white/45 p-5 sm:p-8 rounded-2xl sm:rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center mt-8 sm:mt-12">
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold tracking-tight text-on-background">
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-on-background">
                 Skilled. Reliable. Accountable.
               </h3>
               <p className="text-secondary text-sm leading-relaxed">

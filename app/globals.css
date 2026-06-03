@@ -180,3 +180,30 @@ body {
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* ─── Mobile-First Responsive Overrides ─── */
+
+/* Tighter section padding on mobile */
+@media (max-width: 639px) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Disable expensive floating animation on mobile */
+  .animate-breathing {
+    animation: none !important;
+  }
+
+  /* Reduce glow accent sizes to prevent off-screen painting */
+  .glow-accent {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}

@@ -102,7 +102,7 @@ export default function VoiceOfKochi() {
   const ReviewCard = ({ rev }: { rev: Review }) => (
     <div 
       onMouseMove={handleMouseMove}
-      className="glass-panel w-[280px] sm:w-[350px] bg-white/40 border border-white/50 p-6 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-all duration-300 relative group whitespace-normal"
+      className="glass-panel w-[260px] sm:w-[350px] bg-white/40 border border-white/50 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-all duration-300 relative group whitespace-normal"
     >
       {/* Quote decoration */}
       <div className="absolute top-6 right-8 text-surface-container-high opacity-10 select-none group-hover:scale-110 transition-transform duration-300 pointer-events-none">
@@ -199,7 +199,7 @@ export default function VoiceOfKochi() {
         }
       `}} />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
@@ -207,7 +207,7 @@ export default function VoiceOfKochi() {
               <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1 rounded-full w-fit">
                 Voice of Kochi
               </p>
-              <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
+              <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-on-background">
                 Highly Rated by <span className="text-primary">Your Ernakulam Neighbors</span>
               </h2>
               <p className="text-secondary text-sm md:text-base">

@@ -46,7 +46,7 @@ export default function ServicesGrid() {
 
   return (
     <section id="services" className="py-20 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
         
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
@@ -55,7 +55,7 @@ export default function ServicesGrid() {
               <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1 rounded-full w-fit">
                 Expert Craftsmanship
               </p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold tracking-tight text-on-background">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-tight text-on-background">
                 Technical Precision, <span className="text-primary">Neat Installations.</span>
               </h2>
               <p className="text-secondary text-sm md:text-base">
@@ -73,7 +73,7 @@ export default function ServicesGrid() {
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {services.map((service, idx) => (
             <ScrollReveal
               key={service.key}
@@ -86,7 +86,7 @@ export default function ServicesGrid() {
                 className="glass-panel spring-hover bg-white/40 border border-white/50 rounded-3xl overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] group flex flex-col h-full"
               >
                 {/* Service Cover Image */}
-                <div className="h-48 overflow-hidden relative border-b border-white/20">
+                <div className="h-36 sm:h-48 overflow-hidden relative border-b border-white/20">
                   <img
                     src={getServiceImage(service.key)}
                     alt={getServiceAlt(service.key) || service.name}
@@ -99,7 +99,7 @@ export default function ServicesGrid() {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6 md:p-8 flex flex-col grow justify-between space-y-6">
+                <div className="p-5 sm:p-6 md:p-8 flex flex-col grow justify-between space-y-4 sm:space-y-6">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">

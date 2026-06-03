@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-transparent border-t border-outline-variant/15 pt-16 pb-24 md:pb-12 text-xs sm:text-sm text-secondary">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
         
         {/* Brand Information */}
         <div className="space-y-4">
@@ -84,7 +84,7 @@ export default function Footer() {
       </div>
 
       {/* Compliance & Copyright */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 border-t border-outline-variant/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 border-t border-outline-variant/20 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-[11px] text-secondary">
           © {new Date().getFullYear()} Maria Electro Tech. All rights reserved. Registered Professional Services, Kochi.
         </p>

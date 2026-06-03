@@ -63,14 +63,14 @@ export default function FAQSection() {
 
   return (
     <section id="faq" className="py-20 bg-transparent">
-      <div className="max-w-3xl mx-auto px-6 space-y-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
           <div className="text-center space-y-4">
             <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit mx-auto">
               Clear Answers
             </p>
-            <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-on-background">
               Frequently Asked Questions
             </h2>
             <p className="text-secondary text-sm md:text-base">
@@ -91,7 +91,7 @@ export default function FAQSection() {
                 >
                   <button
                     onClick={() => toggle(idx)}
-                    className="w-full p-6 text-left flex justify-between items-center group focus:outline-none select-none cursor-pointer"
+                    className="w-full p-4 sm:p-6 text-left flex justify-between items-center group focus:outline-none select-none cursor-pointer"
                   >
                     <span className="font-bold text-sm sm:text-base text-on-background group-hover:text-primary transition-colors pr-4">
                       {faq.q}
@@ -113,7 +113,7 @@ export default function FAQSection() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="px-6 pb-6 pt-2 text-secondary text-xs sm:text-sm leading-relaxed border-t border-outline-variant/5">
+                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 text-secondary text-xs sm:text-sm leading-relaxed border-t border-outline-variant/5">
                           {faq.a}
                         </div>
                       </motion.div>

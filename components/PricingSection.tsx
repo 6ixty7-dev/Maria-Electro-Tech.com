@@ -110,14 +110,14 @@ export default function PricingSection() {
 
   return (
     <section id="pricing" className="py-20 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
         {/* Header */}
         <ScrollReveal direction="up" delay={50}>
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <p className="text-primary font-bold text-xs uppercase tracking-wider bg-primary/10 px-3 py-1.5 rounded-full w-fit mx-auto">
               Fixed Rates &amp; Transparent Billing
             </p>
-            <h2 className="text-3xl font-display font-bold tracking-tight text-on-background">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-on-background">
               Transparent Pricing. <span className="text-primary">No Surprise Visiting Fees.</span>
             </h2>
             <p className="text-secondary text-sm md:text-base">
@@ -127,7 +127,7 @@ export default function PricingSection() {
         </ScrollReveal>
 
         {/* Pricing Grids */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
           {tiers.map((tier, idx) => (
             <ScrollReveal
               key={idx}
@@ -137,9 +137,9 @@ export default function PricingSection() {
             >
               <div
                 onMouseMove={handleMouseMove}
-                className={`glass-panel spring-hover rounded-3xl p-6 md:p-8 border flex flex-col justify-between h-full transition-all duration-300 relative ${
+                className={`glass-panel spring-hover rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 border flex flex-col justify-between h-full transition-all duration-300 relative ${
                   tier.popular
-                    ? 'border-primary bg-white/80 shadow-xl scale-100 lg:scale-[1.03] z-10'
+                    ? 'border-primary bg-white/80 shadow-xl lg:scale-[1.03] z-10'
                     : 'border-white/50 bg-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.03)]'
                 }`}
               >
