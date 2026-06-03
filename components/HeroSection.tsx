@@ -21,7 +21,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative pt-24 pb-8 sm:pt-32 md:py-24 bg-transparent overflow-hidden min-h-0 sm:min-h-[90vh] flex items-center">
+    <section className="relative pt-20 pb-4 sm:pt-32 md:py-24 bg-transparent overflow-hidden min-h-0 sm:min-h-[90vh] flex items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           
@@ -38,12 +38,12 @@ export default function HeroSection() {
             </div>
 
             {/* Main Trust-building Heading */}
-            <h1 className="text-[1.6rem] sm:text-4xl md:text-5xl font-display font-bold leading-[1.2] sm:leading-tight tracking-tight text-on-background max-w-[90vw] sm:max-w-none">
-              Professional <span className="text-primary">Electrical</span> & <span className="text-primary">Plumbing</span> Services You Can Trust.
+            <h1 className="text-4xl sm:text-4xl md:text-5xl font-display font-extrabold leading-[1.1] sm:leading-tight tracking-tight text-on-background max-w-[90vw] sm:max-w-none">
+              Trusted <span className="text-primary">Electricians</span> & <span className="text-primary">Plumbers</span> in Kochi Since 2000
             </h1>
 
-            <p className="text-secondary text-sm md:text-base max-w-lg leading-relaxed">
-              Reliable electrical, plumbing, and home maintenance for Kochi &amp; Ernakulam. Skilled technicians, honest pricing, and dependable service — since 2000.
+            <p className="text-secondary text-[15px] md:text-base max-w-lg leading-relaxed">
+              Electrical repairs, plumbing, CCTV installation, inverter setup, house wiring and KSEB assistance.
             </p>
 
             {/* Quick Action CTAs */}
@@ -99,11 +99,11 @@ export default function HeroSection() {
           </div>
 
           {/* Hero Right Visual Column */}
-          <div className="relative group max-w-xs sm:max-w-md lg:max-w-none mx-auto w-full animate-breathing">
+          <div className="relative group max-w-[180px] sm:max-w-[220px] md:max-w-md lg:max-w-none mx-auto w-full animate-breathing mt-6 sm:mt-0">
             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/10 to-transparent blur-3xl opacity-50 pointer-events-none" />
             
             {/* Realistic Technician Photo */}
-            <div className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden aspect-[3/4] sm:aspect-[4/5] shadow-lg border border-white/50 z-10 bg-white">
+            <div className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden aspect-[4/3] sm:aspect-[4/5] shadow-lg border border-white/50 z-10 bg-white">
               <img
                 src={heroImage}
                 alt="Professional Kochi Electrician"

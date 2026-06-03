@@ -65,7 +65,7 @@ export default function WhyKochiTrustsSection() {
 
         {/* Technician Licensing and Safety Spotlight */}
         <ScrollReveal direction="up" delay={200}>
-          <div className="glass-panel bg-white/30 border border-white/45 p-5 sm:p-8 rounded-2xl sm:rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center mt-8 sm:mt-12">
+          <div className="glass-panel bg-white/30 border border-white/45 p-4 sm:p-8 rounded-2xl sm:rounded-3xl grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center mt-8 sm:mt-12">
             <div className="space-y-6">
               <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-on-background">
                 Skilled. Reliable. Accountable.
@@ -101,7 +101,7 @@ export default function WhyKochiTrustsSection() {
               </ul>
             </div>
             {/* visual wrapper */}
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-white/50 shadow-md">
+            <div className="relative rounded-2xl overflow-hidden aspect-video sm:aspect-[4/3] border border-white/50 shadow-md">
               <img
                 src={teamImage}
                 alt="Certified Kochi Technicians Team"

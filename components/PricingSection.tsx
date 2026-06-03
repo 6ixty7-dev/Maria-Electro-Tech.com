@@ -127,19 +127,19 @@ export default function PricingSection() {
         </ScrollReveal>
 
         {/* Pricing Grids */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible pb-8 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch hide-scrollbar snap-x snap-mandatory md:snap-none">
           {tiers.map((tier, idx) => (
             <ScrollReveal
               key={idx}
               direction="up"
               delay={idx * 80}
-              className="h-full"
+              className="h-full shrink-0 snap-center md:snap-align-none w-[260px] sm:w-[300px] md:w-auto"
             >
               <div
                 onMouseMove={handleMouseMove}
-                className={`glass-panel spring-hover rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 border flex flex-col justify-between h-full transition-all duration-300 relative ${
+                className={`glass-panel spring-hover rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 border flex flex-col justify-start h-full transition-all duration-300 relative ${
                   tier.popular
-                    ? 'border-primary bg-white/80 shadow-xl lg:scale-[1.03] z-10'
+                    ? 'border-primary bg-white/80 shadow-xl lg:scale-[1.03] z-10 mt-2 sm:mt-0'
                     : 'border-white/50 bg-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.03)]'
                 }`}
               >
@@ -177,7 +177,7 @@ export default function PricingSection() {
                   </ul>
                 </div>
 
-                <div className="pt-8">
+                <div className="pt-6 sm:pt-8 mt-auto">
                   <a
                     href={`https://wa.me/919847192829?text=Hello%20Maria%20Electro%20Tech,%20I%20would%20like%20to%20book%20the%20${encodeURIComponent(tier.name)}%20package.`}
                     target="_blank"
