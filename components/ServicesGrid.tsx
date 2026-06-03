@@ -73,20 +73,20 @@ export default function ServicesGrid() {
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+        <div className="flex md:grid overflow-x-auto md:overflow-visible pb-8 md:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 items-stretch hide-scrollbar snap-x snap-mandatory md:snap-none">
           {services.map((service, idx) => (
             <ScrollReveal
               key={service.key}
               direction="up"
               delay={idx * 80}
-              className="h-full"
+              className="h-full shrink-0 snap-center md:snap-align-none w-[260px] sm:w-[320px] md:w-auto"
             >
               <div 
                 onMouseMove={handleMouseMove}
                 className="glass-panel spring-hover bg-white/40 border border-white/50 rounded-3xl overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.03)] group flex flex-col h-full"
               >
                 {/* Service Cover Image */}
-                <div className="h-36 sm:h-48 overflow-hidden relative border-b border-white/20">
+                <div className="h-32 sm:h-48 overflow-hidden relative border-b border-white/20">
                   <img
                     src={getServiceImage(service.key)}
                     alt={getServiceAlt(service.key) || service.name}
@@ -99,7 +99,7 @@ export default function ServicesGrid() {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 sm:p-6 md:p-8 flex flex-col grow justify-between space-y-4 sm:space-y-6">
+                <div className="p-4 sm:p-6 md:p-8 flex flex-col grow justify-between space-y-4 sm:space-y-6">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">

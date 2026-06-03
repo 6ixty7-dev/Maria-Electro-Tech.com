@@ -102,7 +102,7 @@ export default function VoiceOfKochi() {
   const ReviewCard = ({ rev }: { rev: Review }) => (
     <div 
       onMouseMove={handleMouseMove}
-      className="glass-panel w-[260px] sm:w-[350px] bg-white/40 border border-white/50 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-all duration-300 relative group whitespace-normal"
+      className="glass-panel w-[240px] sm:w-[350px] bg-white/40 border border-white/50 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.02)] flex flex-col justify-between shrink-0 select-none hover:shadow-md transition-all duration-300 relative group whitespace-normal"
     >
       {/* Quote decoration */}
       <div className="absolute top-6 right-8 text-surface-container-high opacity-10 select-none group-hover:scale-110 transition-transform duration-300 pointer-events-none">

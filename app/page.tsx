@@ -32,17 +32,17 @@ export default function Home() {
       {/* Google verified customer testimonials */}
       <VoiceOfKochi />
 
-      {/* Transparent Price Packages */}
-      <PricingSection />
-
       {/* Dedicated Emergency Dispatch Support Banner */}
       <EmergencyWidget />
+
+      {/* Kochi Local Trust Safety & Accreditation */}
+      <WhyKochiTrustsSection />
 
       {/* Grounded Service Cards Grid */}
       <ServicesGrid />
 
-      {/* Kochi Local Trust Safety & Accreditation */}
-      <WhyKochiTrustsSection />
+      {/* Transparent Price Packages */}
+      <PricingSection />
 
       {/* 3-Step Workmanship Process explaining how it works */}
       <RealProcessSection />
