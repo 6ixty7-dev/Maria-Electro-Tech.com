@@ -29,6 +29,12 @@ export default function Home() {
       {/* Hero Header Section */}
       <HeroSection />
 
+      {/* Google verified customer testimonials */}
+      <VoiceOfKochi />
+
+      {/* Transparent Price Packages */}
+      <PricingSection />
+
       {/* Dedicated Emergency Dispatch Support Banner */}
       <EmergencyWidget />
 
@@ -40,12 +46,6 @@ export default function Home() {
 
       {/* 3-Step Workmanship Process explaining how it works */}
       <RealProcessSection />
-
-      {/* Transparent Price Packages */}
-      <PricingSection />
-
-      {/* Google verified customer testimonials */}
-      <VoiceOfKochi />
 
       {/* Collapsible Accordion FAQs */}
       <FAQSection />
