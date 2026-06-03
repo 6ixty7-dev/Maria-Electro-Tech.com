@@ -1329,6 +1329,7 @@ create policy "Admin access" on public.gallery for all using (true);
                   <option value="inverter">Inverter</option>
                   <option value="maintenance">Maintenance</option>
                   <option value="before-after">Before-After transformations</option>
+                  <option value="hero_slides">Hero Section Banner Slides</option>
                 </select>
               </div>
 

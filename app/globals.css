@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0058bc;
+  --color-primary: #0284c7;
   --color-on-primary: #ffffff;
-  --color-primary-container: #0070eb;
-  --color-on-primary-container: #fefcff;
+  --color-primary-container: #e0f2fe;
+  --color-on-primary-container: #0369a1;
   --color-secondary: #5d5e60;
   --color-tertiary: #5c5c5c;
   --color-tertiary-container: #747474;
@@ -74,7 +74,7 @@ body {
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(0, 88, 188, 0.04) 0%, rgba(250, 249, 254, 0) 70%);
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.05) 0%, rgba(250, 249, 254, 0) 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -83,17 +83,17 @@ body {
 /* ─── Frosted Glassmorphism Styles (Performance Optimized) ─── */
 
 .glass-navbar {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
   position: relative;
   will-change: transform;
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04);
   position: relative;
   overflow: hidden;
   transition: transform 0.4s var(--premium-bezier), box-shadow 0.4s var(--premium-bezier), border-color 0.3s ease;
@@ -102,12 +102,12 @@ body {
 
 @media (min-width: 768px) {
   .glass-navbar {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
   }
   .glass-panel {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
   }
 }
 
@@ -138,8 +138,8 @@ body {
 @media (min-width: 640px) {
   .spring-hover:hover {
     transform: scale(1.015) translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 88, 188, 0.04);
-    border-color: rgba(0, 88, 188, 0.2);
+    box-shadow: 0 12px 40px rgba(2, 132, 199, 0.06);
+    border-color: rgba(2, 132, 199, 0.25);
   }
 }
 
